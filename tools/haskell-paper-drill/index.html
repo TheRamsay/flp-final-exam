@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FLP Haskell Paper Drill</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <h1>FLP Paper Drill</h1>
+          <div id="serverStatus" class="server-status">server...</div>
+        </div>
+
+        <section class="controls" aria-label="Nastavení drillu">
+          <label>
+            <span>Okruh</span>
+            <select id="topic">
+              <option value="any">Mix</option>
+              <option value="data">Datové typy</option>
+              <option value="lists">Seznamy</option>
+              <option value="io">IO</option>
+              <option value="proof">Důkazy</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Seed</span>
+            <input id="seed" autocomplete="off" spellcheck="false" placeholder="2026-05-11" />
+          </label>
+
+          <div class="actions">
+            <button id="start" class="primary">Start</button>
+            <button id="submit" disabled>Odevzdat</button>
+            <button id="next">Nová varianta</button>
+            <button id="reset">Zrušit</button>
+          </div>
+        </section>
+      </header>
+
+      <main class="main">
+        <section class="editor-panel">
+          <div class="editor-bar">
+            <span id="editorStatus">0 znaků, 0 řádků</span>
+            <span id="modeStatus">paper mode</span>
+          </div>
+          <textarea
+            id="answer"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            data-gramm="false"
+            data-gramm_editor="false"
+            placeholder="Řešení..."></textarea>
+        </section>
+
+        <aside class="side-panel">
+          <section class="assignment">
+            <div class="assignment-head">
+              <div>
+                <div class="eyebrow" id="source">Archiv FLP</div>
+                <h2 id="title">Zadání</h2>
+                <p id="subtitle" class="muted">Stiskni Start.</p>
+                <div class="meta-row">
+                  <span id="provenance" class="meta-token">varianta</span>
+                  <span id="checkability" class="meta-token">GHC po odevzdání</span>
+                  <span id="tag" class="meta-token">Mix</span>
+                </div>
+              </div>
+            </div>
+            <div id="assignmentText" class="assignment-body"></div>
+          </section>
+
+          <section id="review" class="review" hidden>
+            <div>
+              <div class="section-title">Rubrika</div>
+              <ul id="rubricList" class="rubric-list"></ul>
+            </div>
+
+            <div class="check-panel">
+              <div class="section-title">GHC</div>
+              <button id="runCheck" disabled>Otestovat</button>
+              <pre id="checkOutput" class="check-output">Po odevzdání dostupné pro vybraná zadání.</pre>
+            </div>
+
+            <div>
+              <div class="section-title">Sebehodnocení</div>
+              <label>
+                Skóre
+                <select id="selfScore">
+                  <option value="5">5 - hotovo</option>
+                  <option value="4">4 - drobnosti</option>
+                  <option value="3" selected>3 - napůl</option>
+                  <option value="2">2 - větší díry</option>
+                  <option value="1">1 - skoro ne</option>
+                  <option value="0">0 - netrefeno</option>
+                </select>
+              </label>
+              <div id="weakConcepts" class="concept-grid"></div>
+              <label>
+                Poznámky
+                <textarea id="notes" class="notes" autocomplete="off" spellcheck="false"></textarea>
+              </label>
+              <button id="saveAttempt" class="primary" disabled>Uložit pokus</button>
+            </div>
+
+            <details class="stats-details">
+              <summary>Statistiky</summary>
+              <div id="stats" class="stats muted">Spusť server pro historii pokusů.</div>
+            </details>
+          </section>
+        </aside>
+      </main>
+
+      <div id="statusText" class="status-text" aria-live="polite">Bez timeru. Rubrika a testy až po odevzdání.</div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

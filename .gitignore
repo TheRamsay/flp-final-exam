@@ -1,0 +1,21 @@
+.env
+.DS_Store
+*.swp
+*.swo
+
+# Obsidian local UI state
+.obsidian/workspace.json
+
+# Large/local Discord exports
+raw/discord/
+raw/discord-pins/
+raw/discord-analysis/
+
+# Local Quartz build/test artifacts
+.quartz/
+public/
+node_modules/
+.npm-cache/
+
+# Local practice app state
+.paper-drill/
