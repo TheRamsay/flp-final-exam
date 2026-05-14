@@ -13,7 +13,7 @@
 - Primární signál: Discord pin `1372587942802882621`, 15. 5. 2025.
 - Veřejná kopie fotky je zmenšená a bez EXIF metadat.
 
-![2024/2025 předtermín - foto fragment](../../assets/exams/2024-2025/term-0-pretermin-fragment.jpg)
+![2024/2025 předtermín - foto fragment](knowledge/assets/exams/2024-2025/term-0-pretermin-fragment.jpg)
 
 ## FP/Haskell
 

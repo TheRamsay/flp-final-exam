@@ -13,7 +13,7 @@
 - Primární signály: Discord piny `1485649559534305442` a `1485622017477709956`, 23. 3. 2026.
 - Veřejná kopie fotky je zmenšená a bez EXIF metadat.
 
-![2025/2026 půlsemestrálka - foto zadání](../../assets/exams/2025-2026/pulsemka-signal.jpg)
+![2025/2026 půlsemestrálka - foto zadání](knowledge/assets/exams/2025-2026/pulsemka-signal.jpg)
 
 ## Zadání z přepisu
 

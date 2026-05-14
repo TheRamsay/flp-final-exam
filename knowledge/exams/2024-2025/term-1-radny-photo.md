@@ -13,9 +13,9 @@
 - Primární signál: Discord pin `1374046174633267281`, 19. 5. 2025.
 - Veřejné kopie fotek jsou zmenšené a bez EXIF metadat.
 
-![2024/2025 řádný termín - foto 1](../../assets/exams/2024-2025/term-1-radny-1.jpg)
+![2024/2025 řádný termín - foto 1](knowledge/assets/exams/2024-2025/term-1-radny-1.jpg)
 
-![2024/2025 řádný termín - foto 2](../../assets/exams/2024-2025/term-1-radny-2.jpg)
+![2024/2025 řádný termín - foto 2](knowledge/assets/exams/2024-2025/term-1-radny-2.jpg)
 
 ## FP/Haskell
 
