@@ -14,15 +14,32 @@ const tasks = [
     make(rng) {
       const helper = pick(rng, ["union", "minus", "insertUniq"]);
       return {
-        subtitle: `Přesné názvy pro test: LExp, Var, Lam, App, fv. Pomocná funkce: ${helper}.`,
-        text: `Definuj:
+        subtitle: `Přesné názvy pro test: LExp, Var, Lam, App, fv. Pomocná funkce se může jmenovat ${helper}.`,
+        text: `Cílem je modelovat lambda výraz jako jednoduchý AST a spočítat jeho volné proměnné.
+
+Lambda výraz v tomhle drillu má jen tři tvary:
+- proměnná,
+- lambda abstrakce, která váže jednu proměnnou v těle,
+- aplikace jednoho výrazu na druhý.
+
+Definuj typ přesně s těmito názvy konstruktorů:
 
 data LExp = Var String | Lam String LExp | App LExp LExp
 
-1. Doplň vhodné odvozené instance.
-2. Definuj union :: Eq a => [a] -> [a] -> [a] pro seznamy bez duplicit.
-3. Definuj fv :: LExp -> [String], která vrátí volné proměnné bez duplicit.
-4. Přidej krátký komentář k případu Lam.
+Požadavky:
+- doplň vhodné odvozené instance,
+- definuj union :: Eq a => [a] -> [a] -> [a] pro seznamy bez duplicit,
+- definuj fv :: LExp -> [String],
+- výsledek fv ber jako množinu reprezentovanou seznamem bez duplicit,
+- u Var je proměnná volná,
+- u App jsou volné proměnné sjednocením obou podvýrazů,
+- u Lam jméno vázané lambdou už ve výsledku volné být nesmí.
+
+Příklad očekávaného chování:
+
+fv (Var "x") == ["x"]
+fv (Lam "x" (Var "x")) == []
+fv (Lam "x" (App (Var "x") (Var "y"))) == ["y"]
 
 Nepoužívej importy.`,
         rubric: [
