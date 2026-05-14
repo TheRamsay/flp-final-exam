@@ -1,31 +1,51 @@
 :root {
   color-scheme: light dark;
-  --bg: #f6f7f7;
+  --bg: #f3f1ec;
   --panel: #ffffff;
-  --panel-soft: #f1f3f3;
+  --panel-soft: #f4f7f5;
+  --panel-editor: #fbfbf8;
+  --panel-assignment: #ffffff;
+  --panel-review: #fffaf1;
   --text: #202326;
   --muted: #697075;
   --line: #d9dedf;
   --line-strong: #bfc7c9;
   --accent: #176b64;
   --accent-hover: #115650;
+  --accent-soft: #e1f1ee;
+  --accent-2: #b46b16;
+  --accent-2-soft: #f8ead2;
+  --accent-3: #315f90;
+  --accent-3-soft: #e3edf7;
   --warn: #9b3d31;
   --code: #16191c;
+  --code-bg: #f7f4ed;
+  --shadow: 0 18px 48px rgb(42 34 22 / 9%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111416;
-    --panel: #1b1f22;
-    --panel-soft: #22272a;
-    --text: #eef1f2;
-    --muted: #a3aaae;
-    --line: #333a3e;
-    --line-strong: #4a5459;
-    --accent: #72c5bd;
-    --accent-hover: #93d7d1;
-    --warn: #e3847b;
-    --code: #f7f7f3;
+    --bg: #101211;
+    --panel: #171c1b;
+    --panel-soft: #202827;
+    --panel-editor: #121816;
+    --panel-assignment: #17201e;
+    --panel-review: #201d19;
+    --text: #f2f2ec;
+    --muted: #a9b1ae;
+    --line: #2e3a38;
+    --line-strong: #50615d;
+    --accent: #76d0c6;
+    --accent-hover: #9be1da;
+    --accent-soft: #1c3b37;
+    --accent-2: #e1ad5a;
+    --accent-2-soft: #3b2b18;
+    --accent-3: #8ab8e8;
+    --accent-3-soft: #1b2c3f;
+    --warn: #f0988d;
+    --code: #fff7df;
+    --code-bg: #111715;
+    --shadow: 0 18px 54px rgb(0 0 0 / 22%);
   }
 }
 
@@ -36,7 +56,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-soft) 68%, var(--bg)) 0, var(--bg) 280px),
+    var(--bg);
   color: var(--text);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -55,7 +77,7 @@ select,
 textarea {
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: var(--panel);
+  background: color-mix(in srgb, var(--panel) 88%, var(--panel-soft));
   color: var(--text);
 }
 
@@ -69,6 +91,7 @@ button.primary {
   border-color: var(--accent);
   background: var(--accent);
   color: #fff;
+  font-weight: 800;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,6 +102,7 @@ button.primary {
 
 button:hover:not(:disabled) {
   border-color: var(--line-strong);
+  background: var(--panel-soft);
 }
 
 button.primary:hover:not(:disabled) {
@@ -115,7 +139,7 @@ label {
 .topbar {
   min-width: 0;
   border-bottom: 1px solid var(--line);
-  background: var(--panel);
+  background: color-mix(in srgb, var(--panel) 88%, var(--panel-soft));
   padding: 14px 22px;
   display: grid;
   grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
@@ -126,6 +150,8 @@ label {
 .brand {
   display: grid;
   gap: 5px;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
 }
 
 h1,
@@ -161,7 +187,7 @@ h3 {
 }
 
 .server-status.ok {
-  color: var(--accent);
+  color: var(--accent-2);
 }
 
 .server-status.off {
@@ -199,19 +225,21 @@ h3 {
   min-width: 0;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--panel);
+  box-shadow: var(--shadow);
 }
 
 .editor-panel {
   min-height: 0;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
+  background: var(--panel-editor);
 }
 
 .editor-bar {
   min-height: 44px;
   padding: 10px 14px;
   border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel-editor) 84%, var(--accent-soft));
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -227,7 +255,7 @@ h3 {
   border: 0;
   border-radius: 0 0 10px 10px;
   outline: 0;
-  background: transparent;
+  background: var(--panel-editor);
   color: var(--text);
   padding: 22px;
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -251,6 +279,8 @@ h3 {
 .assignment {
   padding: 20px;
   overflow: auto;
+  background: var(--panel-assignment);
+  border-top: 4px solid var(--accent);
 }
 
 .assignment-head {
@@ -260,6 +290,7 @@ h3 {
 .eyebrow {
   margin-bottom: 4px;
   font-weight: 700;
+  color: var(--accent-3);
 }
 
 .meta-row {
@@ -282,12 +313,12 @@ h3 {
   height: 5px;
   margin-right: 6px;
   border-radius: 999px;
-  background: var(--line-strong);
+  background: var(--accent-3);
   vertical-align: 2px;
 }
 
 .meta-token.signal::before {
-  background: var(--warn);
+  background: var(--accent-2);
 }
 
 .meta-token.check::before {
@@ -311,12 +342,14 @@ h3 {
 .assignment-body strong,
 .reference-body strong {
   font-weight: 800;
+  color: var(--accent-2);
 }
 
 .assignment-body code,
 .reference-body code {
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.94em;
+  color: var(--accent-3);
 }
 
 .assignment-body p,
@@ -340,9 +373,11 @@ h3 {
 }
 
 .assignment-code {
-  margin: 2px 0;
-  padding: 4px 0 4px 13px;
-  border-left: 2px solid var(--line-strong);
+  margin: 4px 0;
+  padding: 11px 13px;
+  border-left: 3px solid var(--accent-2);
+  border-radius: 0 6px 6px 0;
+  background: var(--code-bg);
   color: var(--code);
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 14px;
@@ -352,7 +387,8 @@ h3 {
 }
 
 .assignment-note {
-  color: var(--muted);
+  color: var(--accent-2);
+  font-weight: 650;
 }
 
 .review {
@@ -362,6 +398,8 @@ h3 {
   display: grid;
   align-content: start;
   gap: 18px;
+  background: var(--panel-review);
+  border-top: 4px solid var(--accent-2);
 }
 
 .review[hidden] {
@@ -370,7 +408,7 @@ h3 {
 
 .section-title {
   margin-bottom: 9px;
-  color: var(--text);
+  color: var(--accent-2);
   font-weight: 800;
   font-size: 14px;
 }
@@ -383,6 +421,11 @@ h3 {
 .rubric-list {
   margin: 0;
   padding-left: 20px;
+}
+
+.rubric-list li::marker,
+.assignment-list li::marker {
+  color: var(--accent);
 }
 
 .rubric-list li + li {
@@ -399,6 +442,7 @@ h3 {
   margin: 0;
   padding: 10px 0 0;
   border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel-review) 78%, var(--code-bg));
   color: var(--code);
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12px;
@@ -422,6 +466,11 @@ h3 {
   color: var(--text);
   font-size: 13px;
   font-weight: 500;
+}
+
+.tag-grid label:has(input:checked) {
+  color: var(--accent);
+  font-weight: 800;
 }
 
 .tag-grid input {
@@ -498,7 +547,7 @@ h3 {
 .stat-bar-fill {
   height: 100%;
   border-radius: inherit;
-  background: var(--accent);
+  background: var(--accent-2);
 }
 
 .stat-name {
@@ -513,7 +562,7 @@ h3 {
 .status-text {
   border-top: 1px solid var(--line);
   padding: 8px 22px 10px;
-  background: var(--panel);
+  background: color-mix(in srgb, var(--panel) 82%, var(--accent-soft));
 }
 
 @media (max-width: 1120px) {
