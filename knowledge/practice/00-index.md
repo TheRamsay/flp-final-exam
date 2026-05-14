@@ -3,6 +3,7 @@
 ## Nástroje
 
 - `tools/haskell-paper-drill/` - lokální paper drill appka s minimalistickým editorem, 14 drilly, variantami zadání, Paper režimem bez nápovědy, Editor režimem s autocomplete nápovědou, označenou zdrojovostí, řešitelskými kostrami po odevzdání, historií, statistikami podle chyb a post-hoc GHC testy.
+- [[knowledge/practice/rust-compile-fix-drill|Rust compile/fix drill]] - 20 pasivních Rust otázek typu zkompiluje/nezkompiluje, najdi chybu a oprav.
 
 Spuštění:
 

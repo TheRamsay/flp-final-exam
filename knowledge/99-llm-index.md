@@ -9,6 +9,7 @@
 - Lokální scratchpad `raw/discord-analysis/conversation-signals.md` - kandidáti z konverzace, ignorovaný gitem.
 - Lokální `~/school/flp/midterm/PREP_codex.md` a `PRACTICE_codex.md` - starší půlsemestrální Haskell/lambda vzory.
 - Lokální `~/school/flp/project-1` a `~/school/flp/project-2` - letošní Haskell/Rust projekty.
+- [[knowledge/topics/rust-021-slides|Rust 021 slides extract]] - výtah z `raw/rust.021.pdf` a predikce compile/fix otázek.
 
 ## Nejlepší termíny pro Haskell styl
 

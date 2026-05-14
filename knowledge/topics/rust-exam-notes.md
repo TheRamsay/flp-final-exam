@@ -4,6 +4,8 @@
 
 Aktuální signál je [[knowledge/exams/2025-2026/current-format|pin z 27. 4. 2026]]. Historická Rust zkoušková zadání zatím v exportu nejsou.
 
+Studijní výtah z přednáškového PDF je v [[knowledge/topics/rust-021-slides|Rust 021 - slides extract]].
+
 ## Očekávaný rozsah
 
 - Ownership: kdo vlastní hodnotu, kdy se hodnota přesune.
