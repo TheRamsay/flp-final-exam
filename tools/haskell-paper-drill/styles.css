@@ -183,7 +183,7 @@ h3 {
 .controls {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(150px, 230px) auto;
+  grid-template-columns: minmax(150px, 230px) minmax(130px, 180px) auto;
   gap: 12px;
   align-items: end;
   justify-content: end;
@@ -216,6 +216,7 @@ h3 {
 }
 
 .editor-panel {
+  position: relative;
   grid-column: 2;
   grid-row: 1;
   min-height: 0;
@@ -265,6 +266,63 @@ h3 {
 
 #answer[readonly] {
   color: color-mix(in srgb, var(--text) 74%, var(--muted));
+}
+
+.autocomplete {
+  position: absolute;
+  z-index: 30;
+  width: min(360px, calc(100% - 28px));
+  max-height: 250px;
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 70%, var(--accent));
+  border-radius: 8px;
+  background: rgb(255 253 248 / 98%);
+  box-shadow: 0 14px 32px rgb(68 50 18 / 18%);
+}
+
+.autocomplete[hidden] {
+  display: none;
+}
+
+.completion-item {
+  width: 100%;
+  min-height: 36px;
+  border: 0;
+  border-radius: 0;
+  padding: 7px 10px;
+  background: transparent;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+}
+
+.completion-item + .completion-item {
+  border-top: 1px solid var(--line);
+}
+
+.completion-item[aria-selected="true"],
+.completion-item:hover {
+  background: var(--accent-soft);
+}
+
+.completion-label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--code);
+  font-family: "Cascadia Code", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.completion-detail {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
 }
 
 .side-panel {

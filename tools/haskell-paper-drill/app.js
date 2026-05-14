@@ -813,6 +813,83 @@ const errorTagCatalog = [
   ["behavior", "chování/testy"],
 ];
 
+const completionCatalog = [
+  ["map", "Prelude"],
+  ["filter", "Prelude"],
+  ["foldr", "Prelude"],
+  ["foldl", "Prelude"],
+  ["elem", "Prelude"],
+  ["length", "Prelude"],
+  ["take", "Prelude"],
+  ["drop", "Prelude"],
+  ["span", "Prelude"],
+  ["concat", "Prelude"],
+  ["zipWith", "Prelude"],
+  ["head", "Prelude"],
+  ["tail", "Prelude"],
+  ["not", "Prelude"],
+  ["otherwise", "Prelude"],
+  ["read", "Prelude"],
+  ["show", "Prelude"],
+  ["lines", "Prelude"],
+  ["unlines", "Prelude"],
+  ["words", "Prelude"],
+  ["unwords", "Prelude"],
+  ["readFile", "IO"],
+  ["writeFile", "IO"],
+  ["putStr", "IO"],
+  ["putStrLn", "IO"],
+  ["openFile", "IO"],
+  ["hGetContents", "IO"],
+  ["hPutStr", "IO"],
+  ["hClose", "IO"],
+  ["ReadMode", "IO"],
+  ["WriteMode", "IO"],
+  ["data", "syntaxe"],
+  ["deriving", "syntaxe"],
+  ["where", "syntaxe"],
+  ["let", "syntaxe"],
+  ["in", "syntaxe"],
+  ["case", "syntaxe"],
+  ["of", "syntaxe"],
+  ["if", "syntaxe"],
+  ["then", "syntaxe"],
+  ["else", "syntaxe"],
+  ["do", "syntaxe"],
+  ["Maybe", "typ"],
+  ["Just", "konstruktor"],
+  ["Nothing", "konstruktor"],
+  ["IO", "typ"],
+  ["String", "typ"],
+  ["Int", "typ"],
+  ["Integer", "typ"],
+  ["Bool", "typ"],
+  ["True", "konstruktor"],
+  ["False", "konstruktor"],
+  ["Eq", "class"],
+  ["Ord", "class"],
+  ["Show", "class"],
+];
+
+const reservedCompletionWords = new Set([
+  "case",
+  "class",
+  "data",
+  "deriving",
+  "do",
+  "else",
+  "if",
+  "import",
+  "in",
+  "instance",
+  "let",
+  "module",
+  "of",
+  "then",
+  "type",
+  "where",
+]);
+
 const QUARTZ_BASE_URL = "https://theramsay.github.io/flp-final-exam/";
 
 const state = {
@@ -825,10 +902,14 @@ const state = {
   checkResult: null,
   detectedErrorTags: [],
   api: false,
+  completionItems: [],
+  completionIndex: 0,
+  completionsUsed: 0,
 };
 
 const els = {
   topic: document.getElementById("topic"),
+  assistMode: document.getElementById("assistMode"),
   start: document.getElementById("start"),
   submit: document.getElementById("submit"),
   next: document.getElementById("next"),
@@ -845,6 +926,7 @@ const els = {
   subtitle: document.getElementById("subtitle"),
   tag: document.getElementById("tag"),
   assignmentText: document.getElementById("assignmentText"),
+  autocomplete: document.getElementById("autocomplete"),
   answer: document.getElementById("answer"),
   editorStatus: document.getElementById("editorStatus"),
   modeStatus: document.getElementById("modeStatus"),
@@ -1007,12 +1089,269 @@ function detectedErrorTags(result) {
   return [...new Set(tags.length ? tags : ["behavior"])];
 }
 
+function editorModeEnabled() {
+  return els.assistMode.value === "editor";
+}
+
+function modeLabel() {
+  return editorModeEnabled() ? "editor mode" : "paper mode";
+}
+
+function currentTokenRange() {
+  const value = els.answer.value;
+  const caret = els.answer.selectionStart;
+  const before = value.slice(0, caret).match(/[A-Za-z_][A-Za-z0-9_']*$/);
+  const after = value.slice(caret).match(/^[A-Za-z0-9_']+/);
+  const prefix = before ? before[0] : "";
+  return {
+    start: caret - prefix.length,
+    end: caret + (after ? after[0].length : 0),
+    prefix,
+  };
+}
+
+function completionItem(label, detail, priority = 0) {
+  return { label, insert: label, detail, priority };
+}
+
+function addCompletionItem(map, label, detail, priority) {
+  if (!label || label.length < 2) return;
+  if (/^\d/.test(label)) return;
+  const existing = map.get(label);
+  if (!existing || priority > existing.priority) {
+    map.set(label, completionItem(label, detail, priority));
+  }
+}
+
+function identifiers(text) {
+  return Array.from(String(text).matchAll(/[A-Za-z_][A-Za-z0-9_']*/g), (match) => match[0]);
+}
+
+function taskCompletionItems(map) {
+  if (!state.current) return;
+  const source = `${state.current.subtitle || ""}\n${state.current.text || ""}`;
+  for (const match of source.matchAll(/`([^`]+)`/g)) {
+    for (const id of identifiers(match[1])) {
+      addCompletionItem(map, id, /^[A-Z]/.test(id) ? "ze zadání" : "název ze zadání", 40);
+    }
+  }
+  for (const line of source.split("\n")) {
+    const trimmed = line.trim();
+    if (!isCodeLine(trimmed) && !trimmed.includes("::") && !trimmed.startsWith("data ")) continue;
+    for (const id of identifiers(trimmed)) {
+      if (reservedCompletionWords.has(id)) continue;
+      addCompletionItem(map, id, /^[A-Z]/.test(id) ? "typ/konstruktor" : "ze zadání", 38);
+    }
+  }
+}
+
+function localCompletionItems(map) {
+  const { prefix } = currentTokenRange();
+  const skip = new Set([...reservedCompletionWords, prefix]);
+  for (const id of identifiers(els.answer.value)) {
+    if (skip.has(id)) continue;
+    if (id.length === 1 && !/^[a-z]$/.test(id)) continue;
+    addCompletionItem(map, id, /^[A-Z]/.test(id) ? "lokální typ" : "lokální název", 45);
+  }
+}
+
+function rankedCompletionItems(prefix, force = false) {
+  const map = new Map();
+  for (const [label, detail] of completionCatalog) {
+    addCompletionItem(map, label, detail, 10);
+  }
+  taskCompletionItems(map);
+  localCompletionItems(map);
+  const lower = prefix.toLowerCase();
+  return Array.from(map.values())
+    .filter((item) => force || item.label.toLowerCase().startsWith(lower))
+    .sort((a, b) => {
+      const exact = Number(b.label === prefix) - Number(a.label === prefix);
+      if (exact) return exact;
+      if (b.priority !== a.priority) return b.priority - a.priority;
+      return a.label.localeCompare(b.label);
+    })
+    .slice(0, 10);
+}
+
+function caretPositionInEditor() {
+  const textarea = els.answer;
+  const style = window.getComputedStyle(textarea);
+  const mirror = document.createElement("div");
+  const mirroredProps = [
+    "boxSizing",
+    "width",
+    "borderTopWidth",
+    "borderRightWidth",
+    "borderBottomWidth",
+    "borderLeftWidth",
+    "paddingTop",
+    "paddingRight",
+    "paddingBottom",
+    "paddingLeft",
+    "fontFamily",
+    "fontSize",
+    "fontWeight",
+    "lineHeight",
+    "letterSpacing",
+    "textTransform",
+    "wordSpacing",
+    "tabSize",
+  ];
+  for (const prop of mirroredProps) {
+    mirror.style[prop] = style[prop];
+  }
+  mirror.style.position = "absolute";
+  mirror.style.visibility = "hidden";
+  mirror.style.whiteSpace = "pre-wrap";
+  mirror.style.wordBreak = "break-word";
+  mirror.style.overflowWrap = "break-word";
+  mirror.style.top = "0";
+  mirror.style.left = "-9999px";
+  mirror.textContent = textarea.value.slice(0, textarea.selectionStart);
+  const marker = document.createElement("span");
+  marker.textContent = textarea.value.slice(textarea.selectionStart, textarea.selectionStart + 1) || ".";
+  mirror.append(marker);
+  document.body.append(mirror);
+  const markerRect = marker.getBoundingClientRect();
+  const mirrorRect = mirror.getBoundingClientRect();
+  document.body.removeChild(mirror);
+  return {
+    left: markerRect.left - mirrorRect.left - textarea.scrollLeft,
+    top: markerRect.top - mirrorRect.top - textarea.scrollTop,
+  };
+}
+
+function positionAutocomplete() {
+  const panelRect = els.answer.parentElement.getBoundingClientRect();
+  const answerRect = els.answer.getBoundingClientRect();
+  const caret = caretPositionInEditor();
+  const popupWidth = Math.min(360, Math.max(260, panelRect.width - 28));
+  const left = Math.min(
+    Math.max(14, answerRect.left - panelRect.left + caret.left),
+    Math.max(14, panelRect.width - popupWidth - 14),
+  );
+  const top = Math.min(
+    Math.max(56, answerRect.top - panelRect.top + caret.top + 30),
+    Math.max(56, panelRect.height - 266),
+  );
+  els.autocomplete.style.left = `${left}px`;
+  els.autocomplete.style.top = `${top}px`;
+  els.autocomplete.style.width = `${popupWidth}px`;
+}
+
+function hideAutocomplete() {
+  els.autocomplete.hidden = true;
+  state.completionItems = [];
+  state.completionIndex = 0;
+}
+
+function renderAutocomplete(items) {
+  state.completionItems = items;
+  state.completionIndex = 0;
+  els.autocomplete.replaceChildren(
+    ...items.map((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "completion-item";
+      button.dataset.index = String(index);
+      button.setAttribute("aria-selected", index === 0 ? "true" : "false");
+      button.append(node("span", "completion-label", item.label), node("span", "completion-detail", item.detail));
+      button.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+        applyCompletion(index);
+      });
+      return button;
+    }),
+  );
+  positionAutocomplete();
+  els.autocomplete.hidden = false;
+}
+
+function updateAutocompleteSelection() {
+  Array.from(els.autocomplete.children).forEach((child, index) => {
+    child.setAttribute("aria-selected", index === state.completionIndex ? "true" : "false");
+    if (index === state.completionIndex) child.scrollIntoView({ block: "nearest" });
+  });
+}
+
+function showAutocomplete(force = false) {
+  if (!editorModeEnabled() || !state.running || state.finished || els.answer.readOnly) {
+    hideAutocomplete();
+    return;
+  }
+  const { prefix } = currentTokenRange();
+  if (!force && prefix.length < 2) {
+    hideAutocomplete();
+    return;
+  }
+  const items = rankedCompletionItems(prefix, force);
+  if (!items.length) {
+    hideAutocomplete();
+    return;
+  }
+  renderAutocomplete(items);
+}
+
+function applyCompletion(index = state.completionIndex) {
+  const item = state.completionItems[index];
+  if (!item) return;
+  const { start, end } = currentTokenRange();
+  const value = els.answer.value;
+  els.answer.value = `${value.slice(0, start)}${item.insert}${value.slice(end)}`;
+  const caret = start + item.insert.length;
+  els.answer.setSelectionRange(caret, caret);
+  state.completionsUsed += 1;
+  hideAutocomplete();
+  updateEditorStatus();
+  els.answer.focus();
+}
+
+function moveAutocomplete(delta) {
+  if (els.autocomplete.hidden || !state.completionItems.length) return;
+  state.completionIndex =
+    (state.completionIndex + delta + state.completionItems.length) % state.completionItems.length;
+  updateAutocompleteSelection();
+}
+
+function handleAutocompleteKeydown(event) {
+  if (event.ctrlKey && event.code === "Space") {
+    event.preventDefault();
+    showAutocomplete(true);
+    return;
+  }
+  if (els.autocomplete.hidden) return;
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    moveAutocomplete(1);
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    moveAutocomplete(-1);
+  } else if (event.key === "Enter" || event.key === "Tab") {
+    event.preventDefault();
+    applyCompletion();
+  } else if (event.key === "Escape") {
+    event.preventDefault();
+    hideAutocomplete();
+  }
+}
+
+function syncAssistModeStatus() {
+  hideAutocomplete();
+  if (state.running && !state.finished) {
+    els.modeStatus.textContent = modeLabel();
+  }
+  els.statusText.textContent = editorModeEnabled()
+    ? "Editor režim: autocomplete pro názvy, Prelude a lokální proměnné. Ctrl+Space otevře nabídku."
+    : "Paper režim: bez nápovědy, rubrika a testy až po odevzdání.";
+}
+
 function updateEditorStatus() {
   const chars = els.answer.value.length;
   const lines = els.answer.value ? els.answer.value.split("\n").length : 0;
   els.editorStatus.textContent = `${chars} znaků, ${lines} řádků`;
   if (state.startedAt && state.running) {
-    els.modeStatus.textContent = "rozpracováno";
+    els.modeStatus.textContent = modeLabel();
   }
 }
 
@@ -1225,6 +1564,7 @@ function renderTask(task, generated) {
   };
   state.checkResult = null;
   state.detectedErrorTags = [];
+  state.completionsUsed = 0;
   els.source.textContent = task.source;
   const sourceHref = sourceUrl(task);
   els.sourceLink.href = sourceHref || "#";
@@ -1249,6 +1589,7 @@ function renderTask(task, generated) {
   );
   els.answer.value = "";
   els.answer.readOnly = false;
+  hideAutocomplete();
   els.review.hidden = true;
   els.runCheck.disabled = true;
   els.saveAttempt.disabled = true;
@@ -1275,8 +1616,10 @@ function startDrill(offset = 0) {
   state.startedAt = new Date().toISOString();
   state.finishedAt = null;
   els.submit.disabled = false;
-  els.modeStatus.textContent = "rozpracováno";
-  els.statusText.textContent = "Rozpracováno. Testy a rubrika se ukážou po odevzdání.";
+  els.modeStatus.textContent = modeLabel();
+  els.statusText.textContent = editorModeEnabled()
+    ? "Editor režim: piš normálně, autocomplete se ukáže po 2 znacích nebo přes Ctrl+Space."
+    : "Paper režim: bez nápovědy. Testy a rubrika se ukážou po odevzdání.";
   els.answer.focus();
 }
 
@@ -1286,6 +1629,7 @@ function finishSession() {
   state.finished = true;
   state.finishedAt = new Date().toISOString();
   els.answer.readOnly = true;
+  hideAutocomplete();
   els.submit.disabled = true;
   els.review.hidden = false;
   const canCheck = state.api && (state.current.checkId || state.current.typecheckOnly);
@@ -1302,13 +1646,17 @@ function resetSession() {
   state.finishedAt = null;
   state.checkResult = null;
   state.detectedErrorTags = [];
+  state.completionsUsed = 0;
   els.answer.readOnly = false;
+  hideAutocomplete();
   els.submit.disabled = true;
   els.runCheck.disabled = true;
   els.saveAttempt.disabled = true;
   els.review.hidden = true;
-  els.modeStatus.textContent = "paper mode";
-  els.statusText.textContent = "Bez timeru. Rubrika a testy až po odevzdání.";
+  els.modeStatus.textContent = modeLabel();
+  els.statusText.textContent = editorModeEnabled()
+    ? "Editor režim: autocomplete pro názvy, Prelude a lokální proměnné. Ctrl+Space otevře nabídku."
+    : "Paper režim: bez nápovědy, rubrika a testy až po odevzdání.";
 }
 
 async function api(path, options = {}) {
@@ -1448,6 +1796,8 @@ async function saveAttempt() {
     elapsedSec: elapsedSeconds(),
     chars: els.answer.value.length,
     answer: els.answer.value,
+    assistMode: els.assistMode.value,
+    completionsUsed: state.completionsUsed,
     selfScore: Number(els.selfScore.value),
     errorTags: selectedErrorTags(),
     detectedErrorTags: state.detectedErrorTags,
@@ -1478,7 +1828,22 @@ els.next.addEventListener("click", () => {
 
 els.submit.addEventListener("click", () => finishSession());
 els.reset.addEventListener("click", resetSession);
-els.answer.addEventListener("input", updateEditorStatus);
+els.assistMode.addEventListener("change", syncAssistModeStatus);
+els.answer.addEventListener("input", () => {
+  updateEditorStatus();
+  showAutocomplete(false);
+});
+els.answer.addEventListener("keydown", handleAutocompleteKeydown);
+els.answer.addEventListener("click", () => showAutocomplete(false));
+els.answer.addEventListener("blur", () => {
+  window.setTimeout(hideAutocomplete, 120);
+});
+els.answer.addEventListener("scroll", () => {
+  if (!els.autocomplete.hidden) positionAutocomplete();
+});
+window.addEventListener("resize", () => {
+  if (!els.autocomplete.hidden) positionAutocomplete();
+});
 els.runCheck.addEventListener("click", runCheck);
 els.saveAttempt.addEventListener("click", saveAttempt);
 
