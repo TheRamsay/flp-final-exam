@@ -156,12 +156,28 @@ main = do
 const RECOMMENDATIONS = {
   syntax: "15 minut opisovat signatury a pattern matching bez editoru.",
   types: "Ke každé funkci napsat signaturu dřív než tělo.",
+  names: "U zkouškových zadání opisovat přesné názvy typů, konstruktorů a funkcí.",
   "base-cases": "Před rekurzí vypsat všechny prázdné a singleton případy.",
   recursion: "Trénovat jeden strukturální krok a pojmenovat menší problém.",
+  invariant: "Před kódem napsat invariant reprezentace a kontrolovat ho po každé větvi.",
   prelude: "Zopakovat foldr/foldl/map/filter/words/lines/unlines.",
   io: "Oddělovat IO obal od čistého parseru a formátovače.",
   proof: "Psát důkaz jako řetěz rovností s explicitní definicí a IP.",
+  behavior: "Dopsat 3 malé vstup-výstup příklady před implementací.",
   "data-model": "Nejdřív nakreslit konstruktory a invariant typu.",
+};
+
+const ERROR_LABELS = {
+  syntax: "syntaxe/odsazení",
+  types: "typy/signatury",
+  names: "názvy/konstruktory",
+  "base-cases": "base cases",
+  recursion: "rekurzivní krok",
+  invariant: "invariant/duplicity",
+  prelude: "Prelude/helpery",
+  io: "IO hranice",
+  proof: "důkaz/IP",
+  behavior: "chování/testy",
 };
 
 function json(res, status, data) {
@@ -213,17 +229,41 @@ async function writeHistory(history) {
   await fsp.rename(tmp, HISTORY_FILE);
 }
 
+function unique(values) {
+  return [...new Set((values || []).filter(Boolean))];
+}
+
+function increment(map, key, by = 1) {
+  if (!key) return;
+  map.set(key, (map.get(key) || 0) + by);
+}
+
+function sortedCounts(map) {
+  return Array.from(map.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+
+function errorTagsFor(item) {
+  return unique([...(item.errorTags || []), ...(item.detectedErrorTags || []), ...(item.checkResult?.errorTags || [])]);
+}
+
 function summarize(history) {
   const attempts = history.length;
   const scored = history.filter((item) => Number.isFinite(item.selfScore));
   const averageScore =
     scored.length === 0 ? null : scored.reduce((sum, item) => sum + item.selfScore, 0) / scored.length;
   const weakCounts = new Map();
+  const errorCounts = new Map();
+  const topicErrorCounts = new Map();
   const topicScores = new Map();
 
   for (const item of history) {
     for (const concept of item.weakConcepts || []) {
-      weakCounts.set(concept, (weakCounts.get(concept) || 0) + 1);
+      increment(weakCounts, concept);
+    }
+    const errors = errorTagsFor(item);
+    for (const error of errors) {
+      increment(errorCounts, error);
+      increment(topicErrorCounts, `${item.tag || item.topic || "mix"}::${error}`);
     }
     if (Number.isFinite(item.selfScore)) {
       const current = topicScores.get(item.topic) || { count: 0, total: 0 };
@@ -233,7 +273,22 @@ function summarize(history) {
     }
   }
 
-  const weakList = Array.from(weakCounts.entries()).sort((a, b) => b[1] - a[1]);
+  const weakList = sortedCounts(weakCounts);
+  const errorList = sortedCounts(errorCounts).map(([tag, count]) => ({
+    tag,
+    label: ERROR_LABELS[tag] || tag,
+    count,
+    recommendation: RECOMMENDATIONS[tag] || null,
+  }));
+  const topicErrorList = sortedCounts(topicErrorCounts).map(([key, count]) => {
+    const [topic, tag] = key.split("::");
+    return {
+      topic,
+      tag,
+      label: `${topic}: ${ERROR_LABELS[tag] || tag}`,
+      count,
+    };
+  });
   const topicList = Array.from(topicScores.entries()).map(([topic, value]) => ({
     topic,
     attempts: value.count,
@@ -246,6 +301,7 @@ function summarize(history) {
       title: item.title,
       topic: item.topic,
       score: item.selfScore,
+      errors: errorTagsFor(item).map((tag) => ERROR_LABELS[tag] || tag),
       finishedAt: item.finishedAt,
     }));
 
@@ -254,8 +310,14 @@ function summarize(history) {
     averageScore,
     weakestConcept: weakList[0]?.[0] || null,
     weakConcepts: weakList.map(([concept, count]) => ({ concept, count })),
+    topError: errorList[0] || null,
+    errorStats: errorList,
+    topicErrorStats: topicErrorList,
     topicScores: topicList,
-    recommendations: weakList.slice(0, 3).map(([concept]) => RECOMMENDATIONS[concept] || concept),
+    recommendations: unique([
+      ...errorList.slice(0, 3).map((item) => item.recommendation || item.label),
+      ...weakList.slice(0, 3).map(([concept]) => RECOMMENDATIONS[concept] || concept),
+    ].filter(Boolean)),
     recent,
   };
 }
@@ -309,6 +371,18 @@ function wrapAttemptSource(answer) {
   return `${pragmas.join("\n")}${pragmas.length ? "\n" : ""}module Attempt where\n\n${lines.join("\n")}\n`;
 }
 
+function classifyCheckResult(result) {
+  if (result.ok) return [];
+  const output = [result.typecheck?.output, result.tests?.output].filter(Boolean).join("\n").toLowerCase();
+  const tags = [];
+  if (/parse error|lexical error|layout|parse error on input/.test(output)) tags.push("syntax");
+  if (/couldn't match|ambiguous type|expected|actual|no instance for|arising from/.test(output)) tags.push("types");
+  if (/not in scope|data constructor not in scope|variable not in scope/.test(output)) tags.push("names");
+  if (result.typecheck?.timedOut || result.tests?.timedOut) tags.push("recursion");
+  if (result.tests && !result.tests.ok) tags.push("behavior");
+  return unique(tags.length ? tags : ["behavior"]);
+}
+
 async function checkAttempt(payload) {
   const checkId = payload.checkId || null;
   if (checkId && !CHECKS[checkId]) {
@@ -322,14 +396,16 @@ async function checkAttempt(payload) {
 
   const typecheck = await run("ghc", ["-ignore-dot-ghci", "-fno-code", "-v0", attemptPath], dir, 5000);
   if (!typecheck.ok) {
-    return { ok: false, typecheck, tests: null };
+    const result = { ok: false, typecheck, tests: null };
+    return { ...result, errorTags: classifyCheckResult(result) };
   }
   if (!checkId) {
     return { ok: true, typecheck, tests: null };
   }
   await fsp.writeFile(testPath, CHECKS[checkId]);
   const tests = await run("runghc", ["-ignore-dot-ghci", `-i${dir}`, testPath], dir, 5000);
-  return { ok: typecheck.ok && tests.ok, typecheck, tests };
+  const result = { ok: typecheck.ok && tests.ok, typecheck, tests };
+  return { ...result, errorTags: classifyCheckResult(result) };
 }
 
 async function health() {

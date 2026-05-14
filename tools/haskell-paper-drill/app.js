@@ -786,6 +786,19 @@ const weakConceptCatalog = [
   ["data-model", "datový model"],
 ];
 
+const errorTagCatalog = [
+  ["syntax", "syntaxe/odsazení"],
+  ["types", "typy/signatury"],
+  ["names", "názvy/konstruktory"],
+  ["base-cases", "base cases"],
+  ["recursion", "rekurzivní krok"],
+  ["invariant", "invariant/duplicity"],
+  ["prelude", "Prelude/helpery"],
+  ["io", "IO hranice"],
+  ["proof", "důkaz/IP"],
+  ["behavior", "chování/testy"],
+];
+
 const state = {
   current: null,
   running: false,
@@ -794,6 +807,7 @@ const state = {
   startedAt: null,
   finishedAt: null,
   checkResult: null,
+  detectedErrorTags: [],
   api: false,
 };
 
@@ -823,6 +837,7 @@ const els = {
   runCheck: document.getElementById("runCheck"),
   checkOutput: document.getElementById("checkOutput"),
   selfScore: document.getElementById("selfScore"),
+  errorTags: document.getElementById("errorTags"),
   weakConcepts: document.getElementById("weakConcepts"),
   notes: document.getElementById("notes"),
   saveAttempt: document.getElementById("saveAttempt"),
@@ -877,13 +892,21 @@ function appendInline(parent, text) {
   }
 }
 
-function selectedWeakConcepts() {
-  return Array.from(els.weakConcepts.querySelectorAll("input:checked")).map((input) => input.value);
+function selectedTags(container) {
+  return Array.from(container.querySelectorAll("input:checked")).map((input) => input.value);
 }
 
-function renderWeakConcepts() {
-  els.weakConcepts.replaceChildren(
-    ...weakConceptCatalog.map(([value, label]) => {
+function selectedWeakConcepts() {
+  return selectedTags(els.weakConcepts);
+}
+
+function selectedErrorTags() {
+  return selectedTags(els.errorTags);
+}
+
+function renderTagCatalog(container, catalog) {
+  container.replaceChildren(
+    ...catalog.map(([value, label]) => {
       const wrap = document.createElement("label");
       const input = document.createElement("input");
       input.type = "checkbox";
@@ -892,6 +915,30 @@ function renderWeakConcepts() {
       return wrap;
     }),
   );
+}
+
+function renderReviewTags() {
+  renderTagCatalog(els.errorTags, errorTagCatalog);
+  renderTagCatalog(els.weakConcepts, weakConceptCatalog);
+}
+
+function setTagSelection(container, values, checked) {
+  const wanted = new Set(values);
+  container.querySelectorAll("input").forEach((input) => {
+    if (wanted.has(input.value)) input.checked = checked;
+  });
+}
+
+function detectedErrorTags(result) {
+  if (!result || result.ok) return [];
+  if (Array.isArray(result.errorTags)) return result.errorTags;
+  const output = [result.typecheck?.output, result.tests?.output].filter(Boolean).join("\n").toLowerCase();
+  const tags = [];
+  if (/parse error|lexical error|layout/.test(output)) tags.push("syntax");
+  if (/couldn't match|ambiguous type|expected|actual/.test(output)) tags.push("types");
+  if (/not in scope|data constructor/.test(output)) tags.push("names");
+  if (result.tests && !result.tests.ok) tags.push("behavior");
+  return [...new Set(tags.length ? tags : ["behavior"])];
 }
 
 function updateEditorStatus() {
@@ -1065,6 +1112,7 @@ function renderTask(task, generated) {
     ...generated,
   };
   state.checkResult = null;
+  state.detectedErrorTags = [];
   els.source.textContent = task.source;
   els.provenance.textContent = task.sourceLabel;
   els.provenance.className = `meta-token ${task.sourceKind}`;
@@ -1091,6 +1139,9 @@ function renderTask(task, generated) {
   els.checkOutput.textContent = "Po odevzdání dostupné pro vybraná zadání.";
   els.notes.value = "";
   els.selfScore.value = "3";
+  els.errorTags.querySelectorAll("input").forEach((input) => {
+    input.checked = false;
+  });
   els.weakConcepts.querySelectorAll("input").forEach((input) => {
     input.checked = false;
   });
@@ -1134,6 +1185,7 @@ function resetSession() {
   state.startedAt = null;
   state.finishedAt = null;
   state.checkResult = null;
+  state.detectedErrorTags = [];
   els.answer.readOnly = false;
   els.submit.disabled = true;
   els.runCheck.disabled = true;
@@ -1172,26 +1224,53 @@ async function loadHealth() {
   }
 }
 
+function appendStatRows(rows) {
+  for (const [key, value] of rows) {
+    const row = node("div", "stat-row");
+    row.append(node("span", "stat-key", key), node("span", null, value));
+    els.stats.append(row);
+  }
+}
+
+function appendStatBars(title, items) {
+  if (!items?.length) return;
+  const section = node("div", "stat-section");
+  section.append(node("div", "stat-section-title", title));
+  const max = Math.max(...items.map((item) => item.count), 1);
+  for (const item of items.slice(0, 6)) {
+    const row = node("div", "stat-bar");
+    const label = node("div");
+    label.append(node("div", "stat-name", item.label || item.topic || item.tag));
+    const track = node("div", "stat-bar-track");
+    const fill = node("div", "stat-bar-fill");
+    fill.style.width = `${Math.max(8, Math.round((item.count / max) * 100))}%`;
+    track.append(fill);
+    label.append(track);
+    row.append(label, node("span", "stat-count", String(item.count)));
+    section.append(row);
+  }
+  els.stats.append(section);
+}
+
 function renderStats(stats) {
   els.stats.innerHTML = "";
   if (!stats.attempts) {
     els.stats.append(node("div", "muted", "Zatím žádné uložené pokusy."));
     return;
   }
-  const rows = [
+  appendStatRows([
     ["Pokusy", String(stats.attempts)],
     ["Průměr", stats.averageScore === null ? "-" : `${stats.averageScore.toFixed(1)} / 5`],
-    ["Nejhorší koncept", stats.weakestConcept || "-"],
+    ["Nejčastější chyba", stats.topError?.label || "-"],
     ["Doporučení", stats.recommendations[0] || "-"],
-  ];
-  for (const [key, value] of rows) {
-    const row = node("div", "stat-row");
-    row.append(node("span", "stat-key", key), node("span", null, value));
-    els.stats.append(row);
-  }
+  ]);
+  appendStatBars("Chyby", stats.errorStats);
+  appendStatBars("Okruhy podle chyb", stats.topicErrorStats);
   if (stats.recent.length) {
     const recent = node("div", "muted");
-    recent.textContent = `Naposledy: ${stats.recent[0].title} (${stats.recent[0].score}/5)`;
+    const last = stats.recent[0];
+    const errors = last.errors?.length ? `, ${last.errors.join(", ")}` : "";
+    recent.textContent = `Naposledy: ${last.title} (${last.score}/5${errors})`;
     els.stats.append(recent);
   }
 }
@@ -1221,9 +1300,12 @@ async function runCheck() {
       }),
     });
     state.checkResult = result;
+    state.detectedErrorTags = detectedErrorTags(result);
+    setTagSelection(els.errorTags, state.detectedErrorTags, true);
     const status = result.ok ? "OK" : "FAIL";
     const detail = [result.typecheck?.output, result.tests?.output].filter(Boolean).join("\n\n");
-    els.checkOutput.textContent = `${status}\n${detail || "Bez výstupu."}`;
+    const detected = state.detectedErrorTags.length ? `\nChyby: ${state.detectedErrorTags.join(", ")}` : "";
+    els.checkOutput.textContent = `${status}${detected}\n${detail || "Bez výstupu."}`;
   } catch (error) {
     els.checkOutput.textContent = `FAIL\n${error.message}`;
   } finally {
@@ -1250,6 +1332,8 @@ async function saveAttempt() {
     chars: els.answer.value.length,
     answer: els.answer.value,
     selfScore: Number(els.selfScore.value),
+    errorTags: selectedErrorTags(),
+    detectedErrorTags: state.detectedErrorTags,
     weakConcepts: selectedWeakConcepts(),
     notes: els.notes.value,
     checkResult: state.checkResult,
@@ -1281,6 +1365,6 @@ els.answer.addEventListener("input", updateEditorStatus);
 els.runCheck.addEventListener("click", runCheck);
 els.saveAttempt.addEventListener("click", saveAttempt);
 
-renderWeakConcepts();
+renderReviewTags();
 resetSession();
 loadHealth();
