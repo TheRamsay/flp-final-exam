@@ -7,17 +7,16 @@
   --panel-editor: #fffaf0;
   --panel-assignment: #fffdf8;
   --panel-review: #fff8ea;
-  --paper-line: #eadfca;
   --text: #25231e;
   --muted: #716b5e;
   --line: #ddd1bd;
   --line-strong: #c6b79e;
-  --accent: #1f7a66;
-  --accent-hover: #176352;
-  --accent-soft: #e5f2ec;
-  --accent-2: #a86313;
+  --accent: #2f5f73;
+  --accent-hover: #244d60;
+  --accent-soft: #e6f0f3;
+  --accent-2: #8d5a22;
   --accent-2-soft: #f5e8d1;
-  --accent-3: #2563a8;
+  --accent-3: #315f93;
   --accent-3-soft: #e5edf7;
   --warn: #a3483a;
   --code: #24211c;
@@ -79,7 +78,7 @@ button.primary {
 
 @media (prefers-color-scheme: dark) {
   button.primary {
-    color: #10211f;
+    color: #fff;
   }
 }
 
@@ -247,16 +246,17 @@ h3 {
   border-radius: 0 0 10px 10px;
   outline: 0;
   background:
-    linear-gradient(90deg, transparent 0 62px, #e4b9aa 62px 63px, transparent 63px),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 26px,
-      var(--paper-line) 27px
-    ),
+    radial-gradient(circle at 24px 22px, rgb(255 255 255 / 62%) 0 1px, transparent 1px),
+    radial-gradient(circle at 84% 8%, rgb(138 92 36 / 5%) 0 120px, transparent 260px),
+    linear-gradient(135deg, rgb(255 255 255 / 42%), rgb(244 229 198 / 30%)),
     var(--panel-editor);
+  background-size:
+    34px 34px,
+    auto,
+    auto,
+    auto;
   color: var(--text);
-  padding: 22px 26px 22px 78px;
+  padding: 28px 34px;
   font-family: "Cascadia Code", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 16px;
   line-height: 27px;
@@ -745,7 +745,6 @@ h3 {
 
   #answer {
     min-height: 520px;
-    padding-left: 64px;
   }
 }
 

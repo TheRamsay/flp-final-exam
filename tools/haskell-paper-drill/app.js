@@ -813,7 +813,7 @@ const errorTagCatalog = [
   ["behavior", "chování/testy"],
 ];
 
-const REPO_BLOB_URL = "https://github.com/TheRamsay/flp-final-exam/blob/main/";
+const QUARTZ_BASE_URL = "https://theramsay.github.io/flp-final-exam/";
 
 const state = {
   current: null,
@@ -898,7 +898,7 @@ function escapeHtml(text) {
 
 function sourceUrl(task) {
   if (!task.sourcePath) return "";
-  return `${REPO_BLOB_URL}${task.sourcePath}`;
+  return `${QUARTZ_BASE_URL}${task.sourcePath.replace(/\.md$/, "")}`;
 }
 
 function appendInline(parent, text) {
