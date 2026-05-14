@@ -5,6 +5,7 @@ const tasks = [
     tag: "Datové typy",
     title: "Lambda výrazy a volné proměnné",
     source: "2024/2025 řádný, Haskell část",
+    sourcePath: "knowledge/exams/2024-2025/term-1-radny-photo.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Původní téma: lambda AST, množinové operace a fv; pevné názvy jsou přidané kvůli testům.",
@@ -62,6 +63,7 @@ Klíčový bod je případ \`Lam\`: proměnná vázaná abstrakcí se nesmí obj
     tag: "Seznamy",
     title: "Množiny jako seznamy",
     source: "2024/2025 řádný, Haskell část",
+    sourcePath: "knowledge/exams/2024-2025/term-1-radny-photo.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází z množinové části starého zadání, ale je zúžené na samostatný drill.",
@@ -109,6 +111,7 @@ U množin jako seznamů je nejdůležitější invariant **bez duplicit**. Pořa
     tag: "IO + strom",
     title: "Tabulka ze souboru do BST",
     source: "2024/2025 předtermín, Haskell fragment",
+    sourcePath: "knowledge/exams/2024-2025/term-0-pretermin-photo-fragment.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází z fragmentu se stromem/IO; API je zpřesněné pro post-hoc test.",
@@ -170,6 +173,7 @@ IO část si napiš jako tenký wrapper nad čistým parserem řádku a \`foldr\
     tag: "Datové typy",
     title: "Histogram známek",
     source: "2025/2026 půlsemestrálka signál",
+    sourcePath: "knowledge/exams/2025-2026/pulsemka-2026-signal.md",
     sourceKind: "signal",
     sourceLabel: "signál",
     sourceNote: "Není staré zkouškové zadání. Je to drill podle letošního signálu na datové typy a histogram.",
@@ -230,6 +234,7 @@ Nejčistší řešení má oddělené počítání četností od formátování 
     tag: "Důkaz",
     title: "take/drop",
     source: "2023/2024 první opravný, Haskell část",
+    sourcePath: "knowledge/exams/2023-2024/term-2-prvni-opravny-photo.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Téma take/drop bylo nalezené ve staré zkoušce; formulace je normalizovaná pro cvičení.",
@@ -295,6 +300,7 @@ take n (x:xs') ++ drop n (x:xs')
     tag: "Důkaz",
     title: "concat přes foldr",
     source: "2024/2025 řádný bonus, Haskell část",
+    sourcePath: "knowledge/exams/2024-2025/term-1-radny-photo.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Téma ccat/con je ze starého bonusu; podobný foldr důkaz se objevuje i v 2021/2022.",
@@ -349,6 +355,7 @@ Tady je důležité neplést indukci nad vnějším seznamem seznamů s indukcí
     tag: "IO",
     title: "Skupiny slov podle délky",
     source: "2023/2024 první opravný, Haskell IO",
+    sourcePath: "knowledge/exams/2023-2024/term-2-prvni-opravny-photo.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází z nalezené IO úlohy se seskupováním slov; názvy funkcí se generují.",
@@ -406,6 +413,7 @@ V zadání na papír stačí držet tvar: čisté \`groups\` a malý IO wrapper.
     tag: "Datové typy",
     title: "Pretty-print aritmetického výrazu",
     source: "2022/2023 předtermín, Haskell styl",
+    sourcePath: "knowledge/exams/2022-2023/term-0-pretermin.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází ze starého tématu výrazů a pretty-printu; operátory se variantují.",
@@ -464,6 +472,7 @@ U pretty-printu si nejdřív napiš pomocnou funkci s kontextovou prioritou, jin
     tag: "Seznamy",
     title: "Hex řetězec na číslo",
     source: "2024/2025 předtermín, Haskell část",
+    sourcePath: "knowledge/exams/2024-2025/term-0-pretermin-photo-fragment.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází ze staré úlohy `readh`; formulace je zúžená na samostatný testovatelný drill.",
@@ -521,6 +530,7 @@ Nejčastější chyba je sčítat číslice bez násobení dosavadního akumulá
     tag: "Seznamy",
     title: "Nekonečný Fibonacci list",
     source: "2024/2025 předtermín, Haskell část",
+    sourcePath: "knowledge/exams/2024-2025/term-0-pretermin-photo-fragment.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází ze staré úlohy `lfi :: [Integer]`; test očekává začátek 0,1,1,2,...",
@@ -571,6 +581,7 @@ lfi = fibs 0 1
     tag: "Seznamy",
     title: "Pivot rozdělující seznam",
     source: "2021/2022 speciální/předtermín, Haskell část",
+    sourcePath: "knowledge/exams/2021-2022/term-0-special.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází z úlohy `mid`; test kontroluje vlastnost pivotu, ne konkrétní algoritmus.",
@@ -623,6 +634,7 @@ Na papíře je důležité napsat, jak řešíš sudou délku. Test akceptuje li
     tag: "Datové typy",
     title: "Aritmetický výraz a eval",
     source: "2020/2021 řádný, Haskell část",
+    sourcePath: "knowledge/exams/2020-2021/term-1-radny.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází ze starého zadání s aritmetickými operacemi; `load` je bonusově popsaný, testuje se `eval`.",
@@ -671,6 +683,7 @@ Pro \`load\` bych si nejdřív udělal čistou funkci \`parse :: [String] -> (Ex
     tag: "Důkaz",
     title: "Akumulační suma a foldl",
     source: "2022/2023 předtermín, Haskell důkaz",
+    sourcePath: "knowledge/exams/2022-2023/term-0-pretermin.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází ze starého důkazu `suma 0 xs = foldl (+) 0 xs`; hlavní pointa je silnější IP.",
@@ -729,6 +742,7 @@ Pak dosadíš \`a = 0\`.`,
     tag: "Důkaz",
     title: "all jako foldr",
     source: "2020/2021 řádný, Haskell důkaz",
+    sourcePath: "knowledge/exams/2020-2021/term-1-radny.md",
     sourceKind: "variant",
     sourceLabel: "varianta",
     sourceNote: "Vychází ze starého důkazu `all xs = foldr (&&) True xs`.",
@@ -799,6 +813,8 @@ const errorTagCatalog = [
   ["behavior", "chování/testy"],
 ];
 
+const REPO_BLOB_URL = "https://github.com/TheRamsay/flp-final-exam/blob/main/";
+
 const state = {
   current: null,
   running: false,
@@ -821,6 +837,8 @@ const els = {
   serverStatus: document.getElementById("serverStatus"),
   stats: document.getElementById("stats"),
   source: document.getElementById("source"),
+  sourceLink: document.getElementById("sourceLink"),
+  sourceNote: document.getElementById("sourceNote"),
   provenance: document.getElementById("provenance"),
   checkability: document.getElementById("checkability"),
   title: document.getElementById("title"),
@@ -871,6 +889,18 @@ function node(tagName, className, text) {
   return el;
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function sourceUrl(task) {
+  if (!task.sourcePath) return "";
+  return `${REPO_BLOB_URL}${task.sourcePath}`;
+}
+
 function appendInline(parent, text) {
   const pattern = /(\*\*[^*]+\*\*|`[^`]+`)/g;
   let index = 0;
@@ -889,6 +919,43 @@ function appendInline(parent, text) {
   if (index < text.length) {
     parent.append(document.createTextNode(text.slice(index)));
   }
+}
+
+function highlightCode(text, lang = "haskell") {
+  if (lang === "text") return escapeHtml(text);
+  const tokenPattern =
+    /(--.*$|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)'|\b(?:case|class|data|deriving|do|else|if|import|in|infixl|infixr|instance|let|module|newtype|of|then|type|where)\b|\b(?:Eq|Ord|Show|Maybe|Just|Nothing|IO|String|Int|Integer|Bool|True|False)\b|\b[A-Z][A-Za-z0-9_']*\b|::|->|=>)/gm;
+  let output = "";
+  let index = 0;
+  for (const match of text.matchAll(tokenPattern)) {
+    output += escapeHtml(text.slice(index, match.index));
+    const token = match[0];
+    let className = "syntax-symbol";
+    if (token.startsWith("--")) className = "syntax-comment";
+    else if (token.startsWith('"') || token.startsWith("'")) className = "syntax-string";
+    else if (/^(Eq|Ord|Show|Maybe|Just|Nothing|IO|String|Int|Integer|Bool|True|False)$/.test(token)) {
+      className = "syntax-type";
+    } else if (/^[A-Z]/.test(token)) {
+      className = "syntax-constructor";
+    } else if (/^[a-z]/.test(token)) {
+      className = "syntax-keyword";
+    }
+    output += `<span class="${className}">${escapeHtml(token)}</span>`;
+    index = match.index + token.length;
+  }
+  output += escapeHtml(text.slice(index));
+  return output;
+}
+
+function appendCodeBlock(root, lines, lang = "haskell") {
+  if (!lines.length) return;
+  const language = lang || "haskell";
+  const pre = node("pre", "assignment-code");
+  pre.dataset.lang = language === "text" ? "text" : "Haskell";
+  const codeEl = document.createElement("code");
+  codeEl.innerHTML = highlightCode(lines.join("\n"), language);
+  pre.append(codeEl);
+  root.append(pre);
 }
 
 function selectedTags(container) {
@@ -965,6 +1032,8 @@ function isCodeLine(line) {
     /^[a-z][A-Za-z0-9_']*\s*=/.test(value) ||
     /^[A-Z]:\s/.test(value) ||
     /^[(][^)]/.test(value) ||
+    /^=/.test(value) ||
+    /^[0-9A-Za-z_()]+\s*[+*\/-]\s*[0-9A-Za-z_()+*\/-]+$/.test(value) ||
     value.includes(" -> ") ||
     value.includes(" = ") ||
     value.includes("++")
@@ -980,15 +1049,46 @@ function isSectionHeading(line) {
   return /^(Definuj|Požadavky|Příklad požadovaného stylu|Příklad stylu|Mějme|Dokaž):$/.test(line.trim());
 }
 
-function renderMarkdown(text, target) {
+function sectionInfo(line) {
+  const key = line.trim().replace(/:$/, "");
+  const labels = {
+    Definuj: ["statement", "Zadání"],
+    Požadavky: ["requirements", "Požadavky"],
+    "Příklad požadovaného stylu": ["examples", "Příklad"],
+    "Příklad stylu": ["examples", "Příklad"],
+    Mějme: ["given", "Dáno"],
+    Dokaž: ["goal", "Cíl"],
+  };
+  return labels[key] || ["section", key];
+}
+
+function appendSectionHeading(root, kind, label) {
+  const heading = node("h3", `assignment-section ${kind}`);
+  appendInline(heading, label);
+  root.append(heading);
+}
+
+function renderMarkdown(text, target, options = {}) {
   const root = document.createDocumentFragment();
   let paragraph = [];
   let code = [];
+  let codeLang = "haskell";
   let list = null;
   let fenced = false;
+  let currentSection = null;
+  let requirementsInserted = false;
+  let sectionRendered = false;
+
+  function ensureStatementSection() {
+    if (!options.problem || sectionRendered) return;
+    appendSectionHeading(root, "statement", "Zadání");
+    currentSection = "statement";
+    sectionRendered = true;
+  }
 
   function flushParagraph() {
     if (!paragraph.length) return;
+    ensureStatementSection();
     const p = node("p", "assignment-paragraph");
     appendInline(p, paragraph.join(" "));
     root.append(p);
@@ -997,9 +1097,10 @@ function renderMarkdown(text, target) {
 
   function flushCode() {
     if (!code.length) return;
-    const pre = node("pre", "assignment-code", code.join("\n"));
-    root.append(pre);
+    ensureStatementSection();
+    appendCodeBlock(root, code, codeLang);
     code = [];
+    codeLang = "haskell";
   }
 
   function flushList() {
@@ -1011,8 +1112,14 @@ function renderMarkdown(text, target) {
   function startList(type) {
     if (!list || list.tagName.toLowerCase() !== type) {
       flushList();
+      if (options.problem && !requirementsInserted && currentSection !== "examples") {
+        appendSectionHeading(root, "requirements", "Požadavky");
+        currentSection = "requirements";
+        requirementsInserted = true;
+        sectionRendered = true;
+      }
       list = document.createElement(type);
-      list.className = "assignment-list";
+      list.className = options.problem && currentSection === "requirements" ? "requirements-list" : "assignment-list";
     }
   }
 
@@ -1027,6 +1134,7 @@ function renderMarkdown(text, target) {
         flushParagraph();
         flushList();
         fenced = true;
+        codeLang = trimmed.slice(3).trim() || "haskell";
       }
       continue;
     }
@@ -1057,9 +1165,11 @@ function renderMarkdown(text, target) {
       flushParagraph();
       flushCode();
       flushList();
-      const heading = node("h3", "assignment-section");
-      appendInline(heading, trimmed.slice(0, -1));
-      root.append(heading);
+      const [kind, label] = sectionInfo(trimmed);
+      currentSection = kind;
+      if (kind === "requirements") requirementsInserted = true;
+      appendSectionHeading(root, kind, label);
+      sectionRendered = true;
       continue;
     }
 
@@ -1067,6 +1177,7 @@ function renderMarkdown(text, target) {
       flushParagraph();
       flushCode();
       flushList();
+      ensureStatementSection();
       const note = node("p", "assignment-note");
       appendInline(note, trimmed);
       root.append(note);
@@ -1076,6 +1187,7 @@ function renderMarkdown(text, target) {
     if (isCodeLine(trimmed) || line.startsWith("  ")) {
       flushParagraph();
       flushList();
+      codeLang = currentSection === "given" || currentSection === "goal" ? "text" : "haskell";
       code.push(line);
       continue;
     }
@@ -1092,7 +1204,7 @@ function renderMarkdown(text, target) {
 }
 
 function renderAssignment(text) {
-  renderMarkdown(text, els.assignmentText);
+  renderMarkdown(text, els.assignmentText, { problem: true });
 }
 
 function renderTask(task, generated) {
@@ -1102,6 +1214,7 @@ function renderTask(task, generated) {
     tag: task.tag,
     title: task.title,
     source: task.source,
+    sourcePath: task.sourcePath,
     sourceKind: task.sourceKind,
     sourceLabel: task.sourceLabel,
     sourceNote: task.sourceNote,
@@ -1113,6 +1226,10 @@ function renderTask(task, generated) {
   state.checkResult = null;
   state.detectedErrorTags = [];
   els.source.textContent = task.source;
+  const sourceHref = sourceUrl(task);
+  els.sourceLink.href = sourceHref || "#";
+  els.sourceLink.hidden = !sourceHref;
+  els.sourceNote.textContent = task.sourceNote || "";
   els.provenance.textContent = task.sourceLabel;
   els.provenance.className = `meta-token ${task.sourceKind}`;
   els.provenance.title = task.sourceNote;
@@ -1320,6 +1437,7 @@ async function saveAttempt() {
     topic: state.current.topic,
     tag: state.current.tag,
     source: state.current.source,
+    sourcePath: state.current.sourcePath,
     sourceKind: state.current.sourceKind,
     sourceLabel: state.current.sourceLabel,
     concepts: state.current.concepts,
