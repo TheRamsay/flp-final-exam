@@ -11,7 +11,7 @@ Zdrojová stopa je rozdělená na ruční digests [[raw/manual/pin-assignments|z
 3. [[knowledge/practice/00-index|Practice index]]
 4. [[knowledge/topics/00-index|Topic index]]
 5. [[knowledge/02-cetnosti-temat|Četnosti témat]]
-6. [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell/lambda zadání]]
+6. [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell a lambda zadání]]
 7. [[raw/manual/pin-assignments|Raw zadání z pinů]]
 8. [[raw/manual/conversation-assignments|Raw zadání z konverzace]]
 

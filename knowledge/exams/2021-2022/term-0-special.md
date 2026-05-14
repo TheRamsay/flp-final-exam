@@ -9,7 +9,7 @@
 
 ## Zdroje
 
-- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2021/2022 - speciální/předtermín`.
+- Normalizovaný digest: [[raw/manual/pin-assignments|pin assignments]], sekce `2021/2022 - speciální/předtermín`.
 - Primární signál: Discord pin `959496107271028746`, 1. 4. 2022.
 
 ## FP

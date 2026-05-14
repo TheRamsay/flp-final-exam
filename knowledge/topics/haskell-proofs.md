@@ -42,8 +42,8 @@ U konkrétní zkoušky vždy přizpůsob definici `fl` a pořadí rovností.
 
 ## Zdroje
 
-- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024/2025 - důkaz `len xs = len' xs`]]
-- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023/2024 - `take n xs ++ drop n xs = xs`]]
-- [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 - `suma 0 xs = foldl (+) 0 xs`]]
-- [[knowledge/exams/2021-2022/term-0-special|2021/2022 - `concat xs ++ ys = foldr (:) ys xs`]]
-- [[knowledge/exams/2020-2021/term-1-radny|2020/2021 - `all xs = foldr (&&) True xs`]]
+- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024-2025 - důkaz `len xs = len' xs`]]
+- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 - `take n xs ++ drop n xs = xs`]]
+- [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 - `suma 0 xs = foldl (+) 0 xs`]]
+- [[knowledge/exams/2021-2022/term-0-special|2021-2022 - `concat xs ++ ys = foldr (:) ys xs`]]
+- [[knowledge/exams/2020-2021/term-1-radny|2020-2021 - `all xs = foldr (&&) True xs`]]

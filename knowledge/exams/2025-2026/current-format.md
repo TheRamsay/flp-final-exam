@@ -10,7 +10,7 @@
 
 ## Zdroje
 
-- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2025/2026 - aktuální formát`.
+- Normalizovaný digest: [[raw/manual/pin-assignments|pin assignments]], sekce `2025/2026 - aktuální formát`.
 - Primární signál: Discord pin `1498292826918748200`, 27. 4. 2026.
 
 ## Jednotné poznámky

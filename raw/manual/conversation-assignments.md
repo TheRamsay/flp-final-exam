@@ -5,7 +5,7 @@ Ruční digest relevantních konverzačních zpráv z období 15. 4. až 1. 7.
 ## 2024/2025 - 1. opravný termín, fragment
 
 Zdroj: zprávy `2025-06-02` až `2025-06-09` v `raw/discord/621775580471492638/2025/621775580471492638-jun1.json`.
-Normalizovaná stránka: [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024/2025 - 1. opravný fragment]].
+Normalizovaná stránka: [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024-2025 - 1. opravný fragment]].
 
 - Haskell důkaz:
 

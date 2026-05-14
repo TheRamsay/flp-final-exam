@@ -20,7 +20,7 @@ Prakticky: nečekal bych přesně stejné zadání, ale čekal bych velmi podobn
 | 2024/2025 1. opravný fragment | Fibonacci přes pevný bod, `sub` zmínky | fragmentární | `len xs = len' xs` |
 | 2023/2024 1. opravný | `SUB` přes pevný bod | IO skupiny slov podle délky | `take n xs ++ drop n xs = xs` |
 | 2022/2023 předtermín | `True`, `False`, `XOR` | výrazový typ, pretty-print `pp`, bonus DLL | `suma 0 xs = foldl (+) 0 xs` |
-| 2021/2022 speciální/předtermín | pevný bod pro `LT` | `mid`, IO trim řádků | `concat xs ++ ys = foldr (:) ys xs` |
+| 2021/2022 speciální-předtermín | pevný bod pro `LT` | `mid`, IO trim řádků | `concat xs ++ ys = foldr (:) ys xs` |
 | 2020/2021 řádný | `xor`, `true`, `false` | aritmetický typ, `eval`, `load`, bonus DLL | `all xs = foldr (&&) True xs` |
 | 2025/2026 půlsemestrálka signál | `odds` nad list encodingem | `Grade`, `Result`, histogram | není finální zkouška |
 
@@ -130,11 +130,11 @@ Moje pracovní interpretace: Haskell/lambda část je zhruba **60-70 % stejná v
 
 ## Zdroje
 
-- [[knowledge/exams/2024-2025/term-1-radny-photo|2024/2025 - řádný termín foto]]
-- [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024/2025 - předtermín foto fragment]]
-- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024/2025 - 1. opravný fragment]]
-- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023/2024 - 1. opravný termín foto]]
-- [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 - předtermín]]
-- [[knowledge/exams/2021-2022/term-0-special|2021/2022 - speciální/předtermín]]
-- [[knowledge/exams/2020-2021/term-1-radny|2020/2021 - řádný termín]]
-- [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025/2026 - půlsemestrálka signal]]
+- [[knowledge/exams/2024-2025/term-1-radny-photo|2024-2025 - řádný termín foto]]
+- [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 - předtermín foto fragment]]
+- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024-2025 - 1. opravný fragment]]
+- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 - 1. opravný termín foto]]
+- [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 - předtermín]]
+- [[knowledge/exams/2021-2022/term-0-special|2021-2022 - speciální-předtermín]]
+- [[knowledge/exams/2020-2021/term-1-radny|2020-2021 - řádný termín]]
+- [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025-2026 - půlsemestrálka signal]]

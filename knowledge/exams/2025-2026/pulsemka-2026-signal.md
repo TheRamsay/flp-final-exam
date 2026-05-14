@@ -9,7 +9,7 @@
 
 ## Zdroje
 
-- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2025/2026 - půlsemestrálka signal`.
+- Normalizovaný digest: [[raw/manual/pin-assignments|pin assignments]], sekce `2025/2026 - půlsemestrálka signal`.
 - Primární signály: Discord piny `1485649559534305442` a `1485622017477709956`, 23. 3. 2026.
 - Veřejná kopie fotky je zmenšená a bez EXIF metadat.
 

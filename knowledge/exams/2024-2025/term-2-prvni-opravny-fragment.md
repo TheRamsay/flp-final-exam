@@ -9,7 +9,7 @@
 
 ## Zdroje
 
-- Normalizovaný digest: [[raw/manual/conversation-assignments|raw/manual/conversation-assignments]], sekce `2024/2025 - 1. opravný termín, fragment`.
+- Normalizovaný digest: [[raw/manual/conversation-assignments|conversation assignments]], sekce `2024/2025 - 1. opravný termín, fragment`.
 - Primární signál: zprávy z 2. 6. 2025 až 9. 6. 2025 v lokálním Discord exportu kanálu `621775580471492638`.
 
 ## Rekonstrukce

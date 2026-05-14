@@ -28,8 +28,8 @@ Použití: definovat rekurzivní funkci bez pojmenované rekurze, např. odečí
 
 ## Zdroje
 
-- [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024/2025 předtermín - pevný bod a Ackermann]]
-- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024/2025 1. opravný fragment - Fibonacci přes pevný bod]]
-- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023/2024 1. opravný - `SUB`]]
-- [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 předtermín - `True`, `False`, `XOR`]]
-- [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025/2026 půlsemestrálka signal - `odds`]]
+- [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 předtermín - pevný bod a Ackermann]]
+- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024-2025 1. opravný fragment - Fibonacci přes pevný bod]]
+- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 1. opravný - `SUB`]]
+- [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 předtermín - `True`, `False`, `XOR`]]
+- [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025-2026 půlsemestrálka signal - `odds`]]

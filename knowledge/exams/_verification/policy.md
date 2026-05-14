@@ -16,5 +16,5 @@
 
 ## Zdroje
 
-- Ruční zdrojové digests: [[raw/manual/pin-assignments|raw/manual/pin-assignments]] a [[raw/manual/conversation-assignments|raw/manual/conversation-assignments]].
+- Ruční zdrojové digests: [[raw/manual/pin-assignments|pin assignments]] a [[raw/manual/conversation-assignments|conversation assignments]].
 - Normalizované stránky zkoušek: [[knowledge/exams/00-index|Minulá zadání]].

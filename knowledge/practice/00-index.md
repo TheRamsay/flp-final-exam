@@ -32,5 +32,5 @@ URL: `http://127.0.0.1:8787`
 ## Zdroje
 
 - Drill bank je odvozený z [[knowledge/exams/00-index|minulých zadání]] a označuje přímé přepisy vs varianty.
-- Aktuální omezení pro Haskell/Paper režim vychází z [[knowledge/exams/2025-2026/current-format|2025/2026 - aktuální formát]].
+- Aktuální omezení pro Haskell/Paper režim vychází z [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 - Přehled doporučených témat: [[knowledge/01-roi-plan|ROI plán]].

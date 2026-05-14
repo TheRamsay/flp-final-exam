@@ -25,8 +25,8 @@ Automatická analýza zpracovala 65 exportních oken, 37 703 zpráv a 73 pinů.
 ## Zdroje
 
 - Čísla pochází z lokálního scratchpadu `raw/discord-analysis/summary.md`, který není publikovaný v repu.
-- Ručně ověřené zkouškové zdroje jsou v [[raw/manual/pin-assignments|raw/manual/pin-assignments]] a [[raw/manual/conversation-assignments|raw/manual/conversation-assignments]].
-- Aktuální interpretace Rust vs Prolog vychází z [[knowledge/exams/2025-2026/current-format|2025/2026 - aktuální formát]].
+- Ručně ověřené zkouškové zdroje jsou v [[raw/manual/pin-assignments|pin assignments]] a [[raw/manual/conversation-assignments|conversation assignments]].
+- Aktuální interpretace Rust vs Prolog vychází z [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 
 ## Nejaktivnější zkouškové dny
 

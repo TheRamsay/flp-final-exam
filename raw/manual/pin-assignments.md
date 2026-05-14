@@ -5,7 +5,7 @@ Ruční digest nejdůležitějších pinů. Raw exporty jsou lokální v `raw/di
 ## 2025/2026 - aktuální formát
 
 Zdroj: pin `1498292826918748200`, `2026-04-27`, FLP private.
-Normalizovaná stránka: [[knowledge/exams/2025-2026/current-format|2025/2026 - aktuální formát]].
+Normalizovaná stránka: [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 
 - Zkouška má mít 51 bodů a čas 2 h 25 min.
 - Starší Prolog část je pro aktuální rok nahrazená Rustem.
@@ -17,7 +17,7 @@ Normalizovaná stránka: [[knowledge/exams/2025-2026/current-format|2025/2026 - 
 ## 2025/2026 - půlsemestrálka signal
 
 Zdroj: piny `1485649559534305442` a `1485622017477709956`, `2026-03-23`, FLP private; foto příloha `20260323_1339271.jpg`.
-Normalizovaná stránka: [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025/2026 - půlsemestrálka signal]].
+Normalizovaná stránka: [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025-2026 - půlsemestrálka signal]].
 
 Není to finální zkouška, ale je to dobrý signál k aktuálnímu stylu lambda-kalkul + Haskell.
 
@@ -27,7 +27,7 @@ Není to finální zkouška, ale je to dobrý signál k aktuálnímu stylu lambd
 ## 2024/2025 - řádný termín, foto
 
 Zdroj: pin `1374046174633267281`, `2025-05-19`, přílohy `20250519_172606.jpg`, `20250519_172639.jpg`.
-Normalizovaná stránka: [[knowledge/exams/2024-2025/term-1-radny-photo|2024/2025 - řádný termín foto]].
+Normalizovaná stránka: [[knowledge/exams/2024-2025/term-1-radny-photo|2024-2025 - řádný termín foto]].
 
 FP/Haskell:
 
@@ -46,7 +46,7 @@ LP/Prolog:
 ## 2024/2025 - předtermín, foto fragment
 
 Zdroj: pin `1372587942802882621`, `2025-05-15`, příloha `bb441125-417b-4018-9534-1b6c92497133.jpg`.
-Normalizovaná stránka: [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024/2025 - předtermín foto fragment]].
+Normalizovaná stránka: [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 - předtermín foto fragment]].
 
 FP/Haskell:
 
@@ -67,7 +67,7 @@ LP/Prolog:
 ## 2023/2024 - 1. opravný termín, foto
 
 Zdroj: pin `1242781570096566292`, `2024-05-22`, přílohy `IMG_4776.jpg`, `IMG_4777.jpg`.
-Normalizovaná stránka: [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023/2024 - 1. opravný termín foto]].
+Normalizovaná stránka: [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 - 1. opravný termín foto]].
 
 FP/Haskell:
 
@@ -86,7 +86,7 @@ LP/Prolog:
 ## 2022/2023 - předtermín
 
 Zdroj: pin `1103640599233560606` a navazující zprávy `1103640929178505286`, `1103641056186204211`, `2023-05-04`.
-Normalizovaná stránka: [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 - předtermín]].
+Normalizovaná stránka: [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 - předtermín]].
 
 FP:
 
@@ -104,7 +104,7 @@ LP:
 ## 2021/2022 - speciální/předtermín
 
 Zdroj: pin `959496107271028746`, `2022-04-01`.
-Normalizovaná stránka: [[knowledge/exams/2021-2022/term-0-special|2021/2022 - speciální/předtermín]].
+Normalizovaná stránka: [[knowledge/exams/2021-2022/term-0-special|2021-2022 - speciální-předtermín]].
 
 FP:
 
@@ -123,7 +123,7 @@ LP:
 ## 2020/2021 - řádný termín
 
 Zdroj: pin `842402024532475915`, `2021-05-13`.
-Normalizovaná stránka: [[knowledge/exams/2020-2021/term-1-radny|2020/2021 - řádný termín]].
+Normalizovaná stránka: [[knowledge/exams/2020-2021/term-1-radny|2020-2021 - řádný termín]].
 
 FP:
 

@@ -9,7 +9,7 @@
 
 ## Zdroje
 
-- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2023/2024 - 1. opravný termín, foto`.
+- Normalizovaný digest: [[raw/manual/pin-assignments|pin assignments]], sekce `2023/2024 - 1. opravný termín, foto`.
 - Primární signál: Discord pin `1242781570096566292`, 22. 5. 2024.
 - Veřejné kopie fotek jsou zmenšené a bez EXIF metadat.
 

@@ -9,7 +9,7 @@
 
 ## Zdroje
 
-- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2024/2025 - předtermín, foto fragment`.
+- Normalizovaný digest: [[raw/manual/pin-assignments|pin assignments]], sekce `2024/2025 - předtermín, foto fragment`.
 - Primární signál: Discord pin `1372587942802882621`, 15. 5. 2025.
 - Veřejná kopie fotky je zmenšená a bez EXIF metadat.
 

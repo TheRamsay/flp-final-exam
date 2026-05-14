@@ -34,5 +34,5 @@ Největší návratnost má psaní bez editoru:
 ## Zdroje
 
 - Syntéza z [[knowledge/exams/00-index|minulých zadání]], hlavně Haskell částí 2020/2021 až 2024/2025.
-- Aktuální změna Prolog -> Rust: [[knowledge/exams/2025-2026/current-format|2025/2026 - aktuální formát]].
+- Aktuální změna Prolog -> Rust: [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 - Detailní rozpad Haskell/lambda stability: [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell a lambda-kalkul zadání]].
