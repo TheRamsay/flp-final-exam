@@ -7,6 +7,14 @@
 | Status | `photo transcript` |
 | Primární zdroj | Discord pin `1372587942802882621`, foto `bb441125-417b-4018-9534-1b6c92497133.jpg` |
 
+## Zdroje
+
+- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2024/2025 - předtermín, foto fragment`.
+- Primární signál: Discord pin `1372587942802882621`, 15. 5. 2025.
+- Veřejná kopie fotky je zmenšená a bez EXIF metadat.
+
+![2024/2025 předtermín - foto fragment](../../assets/exams/2024-2025/term-0-pretermin-fragment.jpg)
+
 ## FP/Haskell
 
 1. Lambda-kalkul: definovat a demonstrovat pevný bod a operátor pevného bodu; definovat Ackermannovu funkci jako lambda-výraz.

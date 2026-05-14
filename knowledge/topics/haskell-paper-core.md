@@ -36,3 +36,10 @@ union (x:xs) ys
 - Base case pro každý konstruktor.
 - Nepoužívej funkce mimo povolený režim (`holý Haskell` vs `Prelude`).
 - U IO akce odděl čistou transformaci od `openFile`/`hGetContents`/`hPutStr`.
+
+## Zdroje
+
+- [[knowledge/exams/2024-2025/term-1-radny-photo|2024/2025 řádný - lambda AST, množiny, `fv`, IO `wr`]]
+- [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024/2025 předtermín - Fibonacci list, hex parsing, BST, IO `readf`]]
+- [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 předtermín - výrazový typ a pretty-print]]
+- [[knowledge/exams/2020-2021/term-1-radny|2020/2021 řádný - aritmetický typ, `eval`, `load`]]

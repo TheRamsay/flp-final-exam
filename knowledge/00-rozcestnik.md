@@ -2,6 +2,8 @@
 
 Archiv je postavený z Discord pinů, zpráv z období 15. 4. až 1. 7. a lokálních materiálů v `~/school/flp`.
 
+Zdrojová stopa je rozdělená na ruční digests [[raw/manual/pin-assignments|z pinů]] a [[raw/manual/conversation-assignments|z konverzace]]. Pravidla jistoty a práce s fotkami jsou v [[knowledge/exams/_verification/policy|Pravidlech verifikace]].
+
 ## Nejrychlejší start
 
 1. [[knowledge/01-roi-plan|ROI plán]]

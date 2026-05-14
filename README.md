@@ -11,6 +11,8 @@ Hlavní zdroje jsou lokální Discord exporty a lokální materiály z `~/school
 
 Token není uložený v repozitáři. Export skript čte `DISCORD_TOKEN`, `USER_TOKEN`, nebo hodnotu ze stdin.
 
+Vybrané fotky původních zadání jsou publikované jen jako zmenšené kopie bez EXIF metadat v `knowledge/assets/exams/`.
+
 ## Start
 
 - [[knowledge/00-rozcestnik|Rozcestník]]

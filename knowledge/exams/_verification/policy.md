@@ -9,6 +9,12 @@
 
 ## Poznámky
 
-- Fotky a Discord JSONy jsou lokální a ignorované gitem.
-- Public Markdown obsahuje jen digest, ne celé raw exporty.
+- Discord JSONy a původní media exporty jsou lokální a ignorované gitem.
+- Veřejné fotky v `knowledge/assets/exams/` jsou zmenšené kopie bez EXIF metadat, vložené jen tam, kde bylo zadání původně na fotce.
+- Public Markdown obsahuje digest a vybrané očištěné fotky, ne celé raw exporty.
 - Staré Prolog části jsou historické; pro 2025/2026 má být místo nich Rust.
+
+## Zdroje
+
+- Ruční zdrojové digests: [[raw/manual/pin-assignments|raw/manual/pin-assignments]] a [[raw/manual/conversation-assignments|raw/manual/conversation-assignments]].
+- Normalizované stránky zkoušek: [[knowledge/exams/00-index|Minulá zadání]].

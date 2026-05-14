@@ -7,6 +7,16 @@
 | Status | `photo transcript` |
 | Primární zdroj | Discord pin `1374046174633267281`, fotky z 19. 5. 2025 |
 
+## Zdroje
+
+- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2024/2025 - řádný termín, foto`.
+- Primární signál: Discord pin `1374046174633267281`, 19. 5. 2025.
+- Veřejné kopie fotek jsou zmenšené a bez EXIF metadat.
+
+![2024/2025 řádný termín - foto 1](../../assets/exams/2024-2025/term-1-radny-1.jpg)
+
+![2024/2025 řádný termín - foto 2](../../assets/exams/2024-2025/term-1-radny-2.jpg)
+
 ## FP/Haskell
 
 1. Definovat typ pro reprezentaci lambda-výrazů. Typ jmen proměnných je volný, ale musí být převoditelný na `String` a porovnatelný na ekvivalenci. Nad holý Haskell jen `Eq` a `Show`.

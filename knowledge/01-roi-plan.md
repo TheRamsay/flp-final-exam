@@ -30,3 +30,9 @@ Největší návratnost má psaní bez editoru:
 2. Piš bez GHC, HLS, Copilota a bez hledání v dokumentaci.
 3. Po odevzdání si ručně projdi syntaxi, base cases, typy a okrajové případy.
 4. U testovatelných úloh pusť GHC až po dokončení řešení.
+
+## Zdroje
+
+- Syntéza z [[knowledge/exams/00-index|minulých zadání]], hlavně Haskell částí 2020/2021 až 2024/2025.
+- Aktuální změna Prolog -> Rust: [[knowledge/exams/2025-2026/current-format|2025/2026 - aktuální formát]].
+- Detailní rozpad Haskell/lambda stability: [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell a lambda-kalkul zadání]].

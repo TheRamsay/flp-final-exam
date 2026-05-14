@@ -2,11 +2,11 @@
 
 ## Raw zdroje
 
-- `raw/discord-analysis/summary.md` - automatická sumarizace exportu.
-- `raw/discord-analysis/pin-signals.md` - signály z pinů.
-- `raw/discord-analysis/conversation-signals.md` - kandidáti z konverzace.
-- `raw/manual/pin-assignments.md` - ručně vytěžená zadání z pinů.
-- `raw/manual/conversation-assignments.md` - ručně vytěžená zadání z konverzace.
+- [[raw/manual/pin-assignments|raw/manual/pin-assignments]] - ručně vytěžená zadání z pinů.
+- [[raw/manual/conversation-assignments|raw/manual/conversation-assignments]] - ručně vytěžená zadání z konverzace.
+- Lokální scratchpad `raw/discord-analysis/summary.md` - automatická sumarizace exportu, ignorovaná gitem.
+- Lokální scratchpad `raw/discord-analysis/pin-signals.md` - signály z pinů, ignorovaný gitem.
+- Lokální scratchpad `raw/discord-analysis/conversation-signals.md` - kandidáti z konverzace, ignorovaný gitem.
 - Lokální `~/school/flp/midterm/PREP_codex.md` a `PRACTICE_codex.md` - starší půlsemestrální Haskell/lambda vzory.
 - Lokální `~/school/flp/project-1` a `~/school/flp/project-2` - letošní Haskell/Rust projekty.
 

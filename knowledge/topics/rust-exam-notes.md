@@ -2,7 +2,7 @@
 
 ## Zdroj
 
-Aktuální signál je pin z 27. 4. 2026. Historická Rust zkoušková zadání zatím v exportu nejsou.
+Aktuální signál je [[knowledge/exams/2025-2026/current-format|pin z 27. 4. 2026]]. Historická Rust zkoušková zadání zatím v exportu nejsou.
 
 ## Očekávaný rozsah
 

@@ -127,3 +127,14 @@ Největší riziko u zkoušky není úplně nová oblast, ale drobná změna v z
 | Důkazy | mění se málo až středně | velmi stabilní | trénovat zápis indukce |
 
 Moje pracovní interpretace: Haskell/lambda část je zhruba **60-70 % stejná ve schopnostech**, ale jen **20-40 % stejná v konkrétním příběhu zadání**.
+
+## Zdroje
+
+- [[knowledge/exams/2024-2025/term-1-radny-photo|2024/2025 - řádný termín foto]]
+- [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024/2025 - předtermín foto fragment]]
+- [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024/2025 - 1. opravný fragment]]
+- [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023/2024 - 1. opravný termín foto]]
+- [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 - předtermín]]
+- [[knowledge/exams/2021-2022/term-0-special|2021/2022 - speciální/předtermín]]
+- [[knowledge/exams/2020-2021/term-1-radny|2020/2021 - řádný termín]]
+- [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025/2026 - půlsemestrálka signal]]

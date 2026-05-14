@@ -8,6 +8,11 @@
 | Status | `pin exact` |
 | Primární zdroj | Discord pin `1498292826918748200`, 27. 4. 2026 |
 
+## Zdroje
+
+- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2025/2026 - aktuální formát`.
+- Primární signál: Discord pin `1498292826918748200`, 27. 4. 2026.
+
 ## Jednotné poznámky
 
 - 51 bodů, 2 h 25 min.

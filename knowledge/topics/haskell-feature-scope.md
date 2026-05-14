@@ -112,3 +112,9 @@ Tohle bych netrénoval, pokud už neumíš must-know část.
 2. Když zadání dovolí Prelude, pořád nepředpokládej specializované knihovny.
 3. U IO nejdřív napiš čistou transformaci a teprve potom obal `IO`.
 4. U `foldl`/akumulátorů bývá potřeba silnější indukční tvrzení než přesně to, které je v zadání.
+
+## Zdroje
+
+- Aktuální rozsah Prelude/IO/Haskell klíčových slov: [[knowledge/exams/2025-2026/current-format|2025/2026 - aktuální formát]].
+- Historické Haskell tvary: [[knowledge/exams/2024-2025/term-1-radny-photo|2024/2025 řádný]], [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024/2025 předtermín]], [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023/2024 1. opravný]], [[knowledge/exams/2022-2023/term-0-pretermin|2022/2023 předtermín]].
+- Souhrnná analýza variability: [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell a lambda-kalkul zadání]].

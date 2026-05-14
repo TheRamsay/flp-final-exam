@@ -7,6 +7,16 @@
 | Status | `photo transcript` |
 | Primární zdroj | Discord pin `1242781570096566292`, fotky z 22. 5. 2024 |
 
+## Zdroje
+
+- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2023/2024 - 1. opravný termín, foto`.
+- Primární signál: Discord pin `1242781570096566292`, 22. 5. 2024.
+- Veřejné kopie fotek jsou zmenšené a bez EXIF metadat.
+
+![2023/2024 1. opravný termín - foto 1](../../assets/exams/2023-2024/term-2-prvni-opravny-1.jpg)
+
+![2023/2024 1. opravný termín - foto 2](../../assets/exams/2023-2024/term-2-prvni-opravny-2.jpg)
+
 ## FP/Haskell
 
 1. Lambda-kalkul: pomocí operátoru pevného bodu definovat `SUB`, který odečte dvě nezáporná čísla. K dispozici `iszero`, `succ`, `prev`; demonstrace `SUB 2 1 = 1`.

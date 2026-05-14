@@ -7,6 +7,11 @@
 | Status | `pin exact` |
 | Primární zdroj | Discord pin `842402024532475915`, 13. 5. 2021 |
 
+## Zdroje
+
+- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2020/2021 - řádný termín`.
+- Primární signál: Discord pin `842402024532475915`, 13. 5. 2021.
+
 ## FP
 
 1. Haskell: definovat datový typ pro aritmetické operace `+` a `-`.

@@ -7,6 +7,11 @@
 | Status | `pin exact` |
 | Primární zdroj | Discord pin `1103640599233560606` a navazující zprávy |
 
+## Zdroje
+
+- Normalizovaný digest: [[raw/manual/pin-assignments|raw/manual/pin-assignments]], sekce `2022/2023 - předtermín`.
+- Primární signál: Discord pin `1103640599233560606` a navazující zprávy `1103640929178505286`, `1103641056186204211`, 4. 5. 2023.
+
 ## FP
 
 1. Lambda kalkul: definovat `True`, `False`, `XOR`; ukázat `XOR T F -> T`.
