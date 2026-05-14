@@ -813,7 +813,6 @@ const state = {
 
 const els = {
   topic: document.getElementById("topic"),
-  seed: document.getElementById("seed"),
   start: document.getElementById("start"),
   submit: document.getElementById("submit"),
   next: document.getElementById("next"),
@@ -1149,8 +1148,8 @@ function renderTask(task, generated) {
 }
 
 function startDrill(offset = 0) {
-  const seedText = els.seed.value.trim() || new Date().toISOString().slice(0, 10);
-  const seed = hashSeed(`${seedText}:${els.topic.value}:${offset}`);
+  const day = new Date().toISOString().slice(0, 10);
+  const seed = hashSeed(`${day}:${els.topic.value}:${offset}`);
   const rng = mulberry32(seed);
   const task = chooseTask(rng);
   renderTask(task, task.make(rng));

@@ -14,7 +14,7 @@ URL: `http://127.0.0.1:8787`
 
 ## Doporučený postup
 
-1. Vyber okruh a seed, případně nech mix.
+1. Vyber okruh, případně nech mix.
 2. Piš bez kompilátoru a bez rubric panelu; ten se ukáže až po odevzdání.
 3. Po odevzdání zkontroluj base cases, typové signatury, povolené funkce a zápis IO.
 4. Po odevzdání srovnej řešení s kostrou a rubrikou.

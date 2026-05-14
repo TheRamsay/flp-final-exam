@@ -171,7 +171,7 @@ h3 {
 .controls {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(150px, 210px) minmax(150px, 210px) auto;
+  grid-template-columns: minmax(150px, 230px) auto;
   gap: 12px;
   align-items: end;
   justify-content: end;
