@@ -29,6 +29,6 @@ Samostatné lokální cvičné prostředí je v `tools/haskell-paper-drill/`.
 node tools/haskell-paper-drill/server.js
 ```
 
-Pak otevři `http://127.0.0.1:8787`. Appka má minimalistický editor, varianty starých zadání, označenou zdrojovost, post-hoc GHC kontrolu u vybraných úloh a historii/statistiky v `.paper-drill/history.json`.
+Pak otevři `http://127.0.0.1:8787`. Appka má minimalistický editor, 14 Haskell drillů podle starých zadání a letošních signálů, označenou zdrojovost, řešitelské kostry po odevzdání, post-hoc GHC kontrolu u vybraných úloh a historii/statistiky v `.paper-drill/history.json`.
 
 Staticky jde otevřít i `tools/haskell-paper-drill/index.html`, ale bez serveru nefunguje ukládání historie ani GHC testy.

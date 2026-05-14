@@ -294,7 +294,8 @@ h3 {
   background: var(--accent);
 }
 
-.assignment-body {
+.assignment-body,
+.reference-body {
   display: grid;
   gap: 12px;
   color: var(--text);
@@ -307,17 +308,26 @@ h3 {
   color: var(--muted);
 }
 
-.assignment-body strong {
+.assignment-body strong,
+.reference-body strong {
   font-weight: 800;
 }
 
-.assignment-body code {
+.assignment-body code,
+.reference-body code {
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.94em;
 }
 
-.assignment-body p {
+.assignment-body p,
+.reference-body p {
   color: var(--text);
+}
+
+.reference-body {
+  padding-top: 2px;
+  font-size: 13px;
+  line-height: 1.52;
 }
 
 .assignment-list {

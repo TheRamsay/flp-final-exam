@@ -86,6 +86,71 @@ main = do
   assert (same (fv (App (Lam "x" (Var "x")) (Var "z"))) ["z"]) "application combines vars"
   assert (same (fv (App (Var "x") (Var "x"))) ["x"]) "no duplicates"
 `,
+  readh: `module Main where
+
+import Attempt
+
+assert :: Bool -> String -> IO ()
+assert True _ = pure ()
+assert False msg = error msg
+
+main :: IO ()
+main = do
+  assert (readh "0" == 0) "zero"
+  assert (readh "A" == 10) "single digit"
+  assert (readh "10" == 16) "base step"
+  assert (readh "1F" == 31) "mixed digits"
+  assert (readh "ABC" == 2748) "larger value"
+`,
+  mid: `module Main where
+
+import Attempt
+
+assert :: Bool -> String -> IO ()
+assert True _ = pure ()
+assert False msg = error msg
+
+balanced :: Ord a => a -> [a] -> Bool
+balanced pivot xs =
+  let smaller = length [x | x <- xs, x < pivot]
+      greater = length [x | x <- xs, x > pivot]
+   in abs (smaller - greater) <= 1
+
+main :: IO ()
+main = do
+  assert (mid [1 :: Int] == 1) "singleton"
+  assert (balanced (mid [1,2,3,4,5 :: Int]) [1,2,3,4,5]) "odd length"
+  assert (balanced (mid [1,2,3,4 :: Int]) [1,2,3,4]) "even length"
+  assert (balanced (mid "abcdefg") "abcdefg") "polymorphic over Ord"
+`,
+  exprEval: `module Main where
+
+import Attempt
+
+assert :: Bool -> String -> IO ()
+assert True _ = pure ()
+assert False msg = error msg
+
+main :: IO ()
+main = do
+  assert (eval (Val 3) == 3) "value"
+  assert (eval (Add (Val 2) (Val 5)) == 7) "addition"
+  assert (eval (Sub (Val 9) (Val 4)) == 5) "subtraction"
+  assert (eval (Add (Sub (Val 9) (Val 4)) (Val 10)) == 15) "nested"
+`,
+  lfi: `module Main where
+
+import Attempt
+
+assert :: Bool -> String -> IO ()
+assert True _ = pure ()
+assert False msg = error msg
+
+main :: IO ()
+main = do
+  assert (take 10 lfi == [0,1,1,2,3,5,8,13,21,34 :: Integer]) "first ten fibonacci numbers"
+  assert (take 5 (drop 5 lfi) == [5,8,13,21,34 :: Integer]) "infinite tail"
+`,
 };
 
 const RECOMMENDATIONS = {

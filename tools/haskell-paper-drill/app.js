@@ -30,6 +30,29 @@ Nepoužívej importy.`,
           "Lam odstraní vázanou proměnnou z výsledku těla.",
           "App spojí volné proměnné obou podvýrazů množinově.",
         ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+data LExp = Var String | Lam String LExp | App LExp LExp
+  deriving (Eq, Show)
+
+insertUniq x xs =
+  if elem x xs then xs else x : xs
+
+union [] ys = ys
+union (x:xs) ys = union xs (insertUniq x ys)
+
+remove _ [] = []
+remove x (y:ys)
+  | x == y = remove x ys
+  | otherwise = y : remove x ys
+
+fv (Var x) = [x]
+fv (Lam x e) = remove x (fv e)
+fv (App a b) = union (fv a) (fv b)
+\`\`\`
+
+Klíčový bod je případ \`Lam\`: proměnná vázaná abstrakcí se nesmí objevit ve výsledku \`fv\`.`,
       };
     },
   },
@@ -61,6 +84,22 @@ Nepoužívej Data.List ani jiné importy.`,
           "Typy jsou obecné přes Eq a.",
           "Příklady odpovídají zvolené reprezentaci.",
         ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+add x xs =
+  if elem x xs then xs else x : xs
+
+union [] ys = ys
+union (x:xs) ys = union xs (add x ys)
+
+inter x xs = elem x xs
+
+symd xs ys =
+  [x | x <- union xs ys, not (elem x xs && elem x ys)]
+\`\`\`
+
+U množin jako seznamů je nejdůležitější invariant **bez duplicit**. Pořadí může být jiné, pokud je konzistentní a vysvětlitelné.`,
       };
     },
   },
@@ -100,6 +139,28 @@ Nepoužívej importy.`,
           "lookupT pokrývá všechny větve a vrací Maybe.",
           "IO část odděluje načtení souboru od čistého parsování.",
         ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+data Tree k v = Empty | Node k v (Tree k v) (Tree k v)
+  deriving (Eq, Show)
+
+empty = Empty
+
+ins k v Empty = Node k v Empty Empty
+ins k v (Node k0 v0 l r)
+  | k < k0 = Node k0 v0 (ins k v l) r
+  | k > k0 = Node k0 v0 l (ins k v r)
+  | otherwise = Node k v l r
+
+lookupT _ Empty = Nothing
+lookupT k (Node k0 v0 l r)
+  | k < k0 = lookupT k l
+  | k > k0 = lookupT k r
+  | otherwise = Just v0
+\`\`\`
+
+IO část si napiš jako tenký wrapper nad čistým parserem řádku a \`foldr\`/rekurzivním skládáním stromu.`,
       };
     },
   },
@@ -138,6 +199,28 @@ Nepoužívej importy.`,
           "hist počítá četnosti čistě a nevrací nulové řádky.",
           "Textová funkce jen formátuje už spočítaný histogram.",
         ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+data Grade = A | B | C | D | E | F
+  deriving (Eq, Ord, Show)
+data Result = Result String Grade
+  deriving (Eq, Show)
+
+grades = [A,B,C,D,E,F]
+
+gradeOf (Result _ g) = g
+
+countGrade _ [] = 0
+countGrade g (r:rs) =
+  (if gradeOf r == g then 1 else 0) + countGrade g rs
+
+hist rs = [(g,n) | g <- grades, let n = countGrade g rs, n > 0]
+
+${outputName} rs = unlines [show g ++ ": " ++ show n | (g,n) <- hist rs]
+\`\`\`
+
+Nejčistší řešení má oddělené počítání četností od formátování textu.`,
       };
     },
   },
@@ -177,6 +260,32 @@ Uvažuj nutné případy tak, aby bylo jasné, kdy používáš indukční před
           "Krok pro n > 0 a xs = x:xs' vede na IP pro n-1 a xs'.",
           "Použití definice ++ je explicitní.",
         ],
+        reference: `Kostra důkazu:
+
+1. **Případ \`n = 0\`**:
+
+\`\`\`text
+take 0 xs ++ drop 0 xs
+= [] ++ xs
+= xs
+\`\`\`
+
+2. **Případ \`xs = []\`** pro \`n > 0\`:
+
+\`\`\`text
+take n [] ++ drop n []
+= [] ++ []
+= []
+\`\`\`
+
+3. **Krok \`n > 0\`, \`xs = x:xs'\`**:
+
+\`\`\`text
+take n (x:xs') ++ drop n (x:xs')
+= (x : take (n-1) xs') ++ drop (n-1) xs'
+= x : (take (n-1) xs' ++ drop (n-1) xs')
+= x : xs'                 -- IP
+\`\`\``,
       };
     },
   },
@@ -213,6 +322,24 @@ Piš kroky rovnosti a označ použití indukčního předpokladu.`,
           "IP je použitá na ocasu xss.",
           "Pokud používáš vlastnost ++, je pojmenovaná a potřebná.",
         ],
+        reference: `Kostra důkazu indukcí podle \`xss\`:
+
+\`\`\`text
+Báze:
+ccat []
+= []
+= foldr (++) [] []
+= con []
+
+Krok xss = xs:xss', IP: ccat xss' = con xss'
+ccat (xs:xss')
+= xs ++ ccat xss'
+= xs ++ con xss'          -- IP
+= foldr (++) [] (xs:xss')
+= con (xs:xss')
+\`\`\`
+
+Tady je důležité neplést indukci nad vnějším seznamem seznamů s indukcí nad jedním \`xs\`.`,
       };
     },
   },
@@ -251,6 +378,25 @@ Použij Prelude a běžné IO funkce, bez importů.`,
           "IO akce je krátká a skládá čisté funkce.",
           "Prázdný vstup nepadá na pattern match.",
         ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+insertWord w [] = [(length w, [w])]
+insertWord w ((n,ws):gs)
+  | length w == n = (n, w:ws) : gs
+  | length w < n = (length w, [w]) : (n,ws) : gs
+  | otherwise = (n,ws) : insertWord w gs
+
+groups = foldr insertWord []
+
+showGroup (n,ws) = show n ++ ": " ++ unwords ws
+
+${fn} path = do
+  s <- readFile path
+  putStr (unlines (map showGroup (groups (words s))))
+\`\`\`
+
+V zadání na papír stačí držet tvar: čisté \`groups\` a malý IO wrapper.`,
       };
     },
   },
@@ -286,6 +432,344 @@ Pokud si nejsi jistý prioritami, napiš je explicitně jako pomocnou funkci.`,
           "pp používá precedenci nebo kontext.",
           "Asociativita je konzistentní.",
         ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+data Expr
+  = Const Int
+  | Var String
+  | Add Expr Expr
+  | Mul Expr Expr
+  deriving (Eq, Show)
+
+lookupEnv x ((y,v):ys)
+  | x == y = v
+  | otherwise = lookupEnv x ys
+
+eval env (Const n) = n
+eval env (Var x) = lookupEnv x env
+eval env (Add a b) = eval env a + eval env b
+eval env (Mul a b) = eval env a * eval env b
+
+pp = ppPrec 0
+\`\`\`
+
+U pretty-printu si nejdřív napiš pomocnou funkci s kontextovou prioritou, jinak se v závorkách rychle ztratíš.`,
+      };
+    },
+  },
+  {
+    id: "readh",
+    topic: "lists",
+    tag: "Seznamy",
+    title: "Hex řetězec na číslo",
+    source: "2024/2025 předtermín, Haskell část",
+    sourceKind: "variant",
+    sourceLabel: "varianta",
+    sourceNote: "Vychází ze staré úlohy `readh`; formulace je zúžená na samostatný testovatelný drill.",
+    checkId: "readh",
+    concepts: ["rekurze", "Char", "akumulátor", "Prelude"],
+    make(rng) {
+      const helper = pick(rng, ["digit", "hexVal", "value"]);
+      return {
+        subtitle: `Přesný název pro test: readh. Pomocnou funkci můžeš nazvat ${helper}.`,
+        text: `Definuj:
+
+readh :: String -> Integer
+
+Vstup je validní hexadecimální řetězec s číslicemi 0-9 a velkými písmeny A-F.
+
+Požadavky:
+- "0" se převede na 0,
+- "A" se převede na 10,
+- "10" se převede na 16,
+- "1F" se převede na 31,
+- řešení piš bez importů.
+
+Použij Prelude a běžné porovnávání znaků.`,
+        rubric: [
+          "Pomocná funkce správně mapuje znaky 0-9 a A-F.",
+          "Rekurze nebo fold násobí akumulátor základem 16.",
+          "Prázdný zbytek řetězce vrací akumulátor nebo 0 podle zvolené definice.",
+          "Výsledný typ je Integer, ne String.",
+        ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+readh :: String -> Integer
+digit '0' = 0
+digit '1' = 1
+-- ...
+digit '9' = 9
+digit 'A' = 10
+-- ...
+digit 'F' = 15
+
+readh = go 0
+  where
+    go acc [] = acc
+    go acc (c:cs) = go (16 * acc + digit c) cs
+\`\`\`
+
+Nejčastější chyba je sčítat číslice bez násobení dosavadního akumulátoru šestnácti.`,
+      };
+    },
+  },
+  {
+    id: "lfi",
+    topic: "lists",
+    tag: "Seznamy",
+    title: "Nekonečný Fibonacci list",
+    source: "2024/2025 předtermín, Haskell část",
+    sourceKind: "variant",
+    sourceLabel: "varianta",
+    sourceNote: "Vychází ze staré úlohy `lfi :: [Integer]`; test očekává začátek 0,1,1,2,...",
+    checkId: "lfi",
+    concepts: ["lazy list", "rekurze", "Prelude", "nekonečná data"],
+    make(rng) {
+      const style = pick(rng, ["přes pomocnou funkci", "pomocí zipWith", "jako samostatnou definici"]);
+      return {
+        subtitle: `Přesný název pro test: lfi :: [Integer]. Doporučený styl: ${style}.`,
+        text: `Definuj:
+
+lfi :: [Integer]
+
+Má to být nekonečný seznam Fibonacciho posloupnosti:
+
+0, 1, 1, 2, 3, 5, 8, ...
+
+Požadavky:
+- definice musí být produktivní,
+- \`take 10 lfi\` má vrátit prvních deset prvků,
+- nepoužívej importy.`,
+        rubric: [
+          "Seznam začíná přesně 0, 1, 1, 2.",
+          "Definice je nekonečná a funguje s take.",
+          "Neprobíhá výpočet celé nekonečné struktury najednou.",
+          "Typ je [Integer].",
+        ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+lfi :: [Integer]
+lfi = 0 : 1 : zipWith (+) lfi (tail lfi)
+\`\`\`
+
+Alternativa bez \`zipWith\`:
+
+\`\`\`haskell
+lfi = fibs 0 1
+  where
+    fibs a b = a : fibs b (a + b)
+\`\`\``,
+      };
+    },
+  },
+  {
+    id: "mid",
+    topic: "lists",
+    tag: "Seznamy",
+    title: "Pivot rozdělující seznam",
+    source: "2021/2022 speciální/předtermín, Haskell část",
+    sourceKind: "variant",
+    sourceLabel: "varianta",
+    sourceNote: "Vychází z úlohy `mid`; test kontroluje vlastnost pivotu, ne konkrétní algoritmus.",
+    checkId: "mid",
+    concepts: ["Ord", "seznamy", "rekurze", "invariant"],
+    make(rng) {
+      const strategy = pick(rng, ["seřadit a vzít prostředek", "počítat menší/větší prvky", "pomocný insert sort"]);
+      return {
+        subtitle: `Přesný název pro test: mid :: Ord a => [a] -> a. Možná strategie: ${strategy}.`,
+        text: `Definuj:
+
+mid :: Ord a => [a] -> a
+
+Funkce pro neprázdný seznam vrátí hodnotu pivotu tak, že počet prvků menších než pivot a počet prvků větších než pivot se liší nejvýše o 1.
+
+Požadavky:
+- vstup je neprázdný,
+- můžeš předpokládat, že testovací vstupy nemají duplicity,
+- nepoužívej importy.`,
+        rubric: [
+          "Signatura je polymorfní přes Ord a.",
+          "Řešení funguje pro lichou i sudou délku.",
+          "Nepoužívá knihovní sort z Data.List.",
+          "Hraniční případ singleton vrací jediný prvek.",
+        ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+insert x [] = [x]
+insert x (y:ys)
+  | x <= y = x:y:ys
+  | otherwise = y : insert x ys
+
+sort' [] = []
+sort' (x:xs) = insert x (sort' xs)
+
+at 0 (x:_) = x
+at n (_:xs) = at (n-1) xs
+
+mid xs = at (length xs \`div\` 2) (sort' xs)
+\`\`\`
+
+Na papíře je důležité napsat, jak řešíš sudou délku. Test akceptuje libovolný pivot splňující rozdíl délek nejvýše o 1.`,
+      };
+    },
+  },
+  {
+    id: "expr-eval",
+    topic: "data",
+    tag: "Datové typy",
+    title: "Aritmetický výraz a eval",
+    source: "2020/2021 řádný, Haskell část",
+    sourceKind: "variant",
+    sourceLabel: "varianta",
+    sourceNote: "Vychází ze starého zadání s aritmetickými operacemi; `load` je bonusově popsaný, testuje se `eval`.",
+    checkId: "exprEval",
+    concepts: ["AST", "rekurze", "pattern matching", "eval"],
+    make(rng) {
+      const loadShape = pick(rng, ["prefixový tvar", "řádkový prefix", "jednoduchý token stream"]);
+      return {
+        subtitle: `Přesné názvy pro test: Expr, Val, Add, Sub, eval. Bonusový load formát: ${loadShape}.`,
+        text: `Definuj:
+
+data Expr = Val Int | Add Expr Expr | Sub Expr Expr
+eval :: Expr -> Int
+
+Požadavky:
+- \`eval (Val n)\` vrátí n,
+- \`Add\` sčítá výsledky podvýrazů,
+- \`Sub\` odečítá výsledky podvýrazů,
+- stručně popiš, jak bys doplnil load pro prefixový zápis.
+
+Nepoužívej importy.`,
+        rubric: [
+          "Typ má přesně konstruktory Val, Add a Sub.",
+          "eval rekurzivně prochází oba podvýrazy.",
+          "Sub zachovává správné pořadí operandů.",
+          "Návrh load odděluje parsing od evaluace.",
+        ],
+        reference: `Jedna možná kostra:
+
+\`\`\`haskell
+data Expr = Val Int | Add Expr Expr | Sub Expr Expr
+  deriving (Eq, Show)
+
+eval (Val n) = n
+eval (Add a b) = eval a + eval b
+eval (Sub a b) = eval a - eval b
+\`\`\`
+
+Pro \`load\` bych si nejdřív udělal čistou funkci \`parse :: [String] -> (Expr, [String])\` a IO nechal jen načíst soubor a zavolat parser.`,
+      };
+    },
+  },
+  {
+    id: "sum-fold-proof",
+    topic: "proof",
+    tag: "Důkaz",
+    title: "Akumulační suma a foldl",
+    source: "2022/2023 předtermín, Haskell důkaz",
+    sourceKind: "variant",
+    sourceLabel: "varianta",
+    sourceNote: "Vychází ze starého důkazu `suma 0 xs = foldl (+) 0 xs`; hlavní pointa je silnější IP.",
+    checkId: null,
+    concepts: ["foldl", "akumulátor", "silnější IP", "indukce"],
+    make() {
+      return {
+        subtitle: "Důkaz akumulační funkce; nestačí slabá indukční hypotéza jen pro 0.",
+        text: `Mějme:
+
+suma a [] = a
+suma a (x:xs) = suma (a + x) xs
+
+Dokaž:
+
+suma 0 xs = foldl (+) 0 xs
+
+pro všechny konečné seznamy čísel xs.
+Napiš, jakou silnější indukční hypotézu používáš.`,
+        rubric: [
+          "Je zvolená silnější věta pro obecný akumulátor a.",
+          "Báze pro [] je přepsaná na obou stranách.",
+          "Krok pro x:xs používá IP s akumulátorem a+x.",
+          "Závěr specializuje obecné tvrzení na a = 0.",
+        ],
+        reference: `Správná kostra je dokázat silnější tvrzení:
+
+\`\`\`text
+P(xs): pro všechna a platí suma a xs = foldl (+) a xs
+\`\`\`
+
+Báze:
+
+\`\`\`text
+suma a []
+= a
+= foldl (+) a []
+\`\`\`
+
+Krok:
+
+\`\`\`text
+suma a (x:xs)
+= suma (a+x) xs
+= foldl (+) (a+x) xs      -- IP pro akumulátor a+x
+= foldl (+) a (x:xs)
+\`\`\`
+
+Pak dosadíš \`a = 0\`.`,
+      };
+    },
+  },
+  {
+    id: "all-foldr-proof",
+    topic: "proof",
+    tag: "Důkaz",
+    title: "all jako foldr",
+    source: "2020/2021 řádný, Haskell důkaz",
+    sourceKind: "variant",
+    sourceLabel: "varianta",
+    sourceNote: "Vychází ze starého důkazu `all xs = foldr (&&) True xs`.",
+    checkId: null,
+    concepts: ["foldr", "Bool", "indukce", "definice funkcí"],
+    make() {
+      return {
+        subtitle: "Mechanický důkaz strukturální indukcí nad seznamem.",
+        text: `Mějme:
+
+all [] = True
+all (x:xs) = x && all xs
+
+Dokaž:
+
+all xs = foldr (&&) True xs
+
+pro všechny konečné seznamy Bool hodnot xs.
+Piš každý krok rovnosti podle definice.`,
+        rubric: [
+          "Báze [] přepíše all i foldr.",
+          "Krok x:xs rozepíše definici all.",
+          "IP je použitá na all xs.",
+          "Na konci je rozpoznaná definice foldr pro x:xs.",
+        ],
+        reference: `Kostra:
+
+\`\`\`text
+Báze:
+all []
+= True
+= foldr (&&) True []
+
+Krok xs = x:xs', IP: all xs' = foldr (&&) True xs'
+all (x:xs')
+= x && all xs'
+= x && foldr (&&) True xs'       -- IP
+= foldr (&&) True (x:xs')
+\`\`\`
+
+Tahle úloha je hlavně o čistém zápisu kroků, ne o nápadu.`,
       };
     },
   },
@@ -335,6 +819,7 @@ const els = {
   modeStatus: document.getElementById("modeStatus"),
   review: document.getElementById("review"),
   rubricList: document.getElementById("rubricList"),
+  referenceSolution: document.getElementById("referenceSolution"),
   runCheck: document.getElementById("runCheck"),
   checkOutput: document.getElementById("checkOutput"),
   selfScore: document.getElementById("selfScore"),
@@ -449,11 +934,12 @@ function isSectionHeading(line) {
   return /^(Definuj|Požadavky|Příklad požadovaného stylu|Příklad stylu|Mějme|Dokaž):$/.test(line.trim());
 }
 
-function renderAssignment(text) {
+function renderMarkdown(text, target) {
   const root = document.createDocumentFragment();
   let paragraph = [];
   let code = [];
   let list = null;
+  let fenced = false;
 
   function flushParagraph() {
     if (!paragraph.length) return;
@@ -487,6 +973,21 @@ function renderAssignment(text) {
   for (const rawLine of text.split("\n")) {
     const line = rawLine.trimEnd();
     const trimmed = line.trim();
+    if (trimmed.startsWith("```")) {
+      if (fenced) {
+        flushCode();
+        fenced = false;
+      } else {
+        flushParagraph();
+        flushList();
+        fenced = true;
+      }
+      continue;
+    }
+    if (fenced) {
+      code.push(line);
+      continue;
+    }
     if (!trimmed) {
       flushParagraph();
       flushCode();
@@ -541,7 +1042,11 @@ function renderAssignment(text) {
   flushParagraph();
   flushCode();
   flushList();
-  els.assignmentText.replaceChildren(root);
+  target.replaceChildren(root);
+}
+
+function renderAssignment(text) {
+  renderMarkdown(text, els.assignmentText);
 }
 
 function renderTask(task, generated) {
@@ -570,6 +1075,7 @@ function renderTask(task, generated) {
   els.subtitle.textContent = generated.subtitle;
   els.tag.textContent = task.tag;
   renderAssignment(generated.text);
+  renderMarkdown(generated.reference || "Bez řešitelské kostry.", els.referenceSolution);
   els.rubricList.replaceChildren(
     ...generated.rubric.map((item) => {
       const li = document.createElement("li");
