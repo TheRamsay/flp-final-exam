@@ -34,3 +34,9 @@
 ## Poznámka
 
 Fotka zachycuje více listů najednou; některé body jsou fragmentární.
+
+## Aktuální relevance
+
+- FP/Haskell, lambda a důkazové části ber jako historický trénink stylu zadání a ručního řešení.
+- LP/Prolog část je pro 2025/2026 jen historický vzor; druhou praktickou část nahrazuje Rust.
+- U statusu `raw only` používej zadání jako slabší signál než `pin exact` nebo `photo transcript`.

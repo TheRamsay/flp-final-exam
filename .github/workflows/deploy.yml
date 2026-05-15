@@ -38,6 +38,9 @@ jobs:
           cache: npm
           cache-dependency-path: .quartz/package-lock.json
 
+      - name: Check knowledge base links
+        run: python3 scripts/check_knowledge_base.py
+
       - name: Install Quartz dependencies
         working-directory: .quartz
         run: npm ci

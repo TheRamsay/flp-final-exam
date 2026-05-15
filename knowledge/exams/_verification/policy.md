@@ -5,7 +5,7 @@
 - `pin exact`: text byl v pinu nebo přesně navázané zprávě.
 - `photo transcript`: zadání je přepsané z fotografie; nečitelná místa jsou zestručněná.
 - `conversation fragment`: rekonstruováno z diskuse po zkoušce.
-- `raw only`: existuje jen raw signál, bez normalizace.
+- `raw only`: normalizováno jen ze studentské/raw sbírky, bez silnějšího Discord/foto ověření.
 
 ## Poznámky
 

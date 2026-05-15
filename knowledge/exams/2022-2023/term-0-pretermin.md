@@ -11,8 +11,9 @@
 
 - Normalizovaný digest: [[raw/manual/pin-assignments|pin assignments]], sekce `2022/2023 - předtermín`.
 - Primární signál: Discord pin `1103640599233560606` a navazující zprávy `1103640929178505286`, `1103641056186204211`, 4. 5. 2023.
+- Doplňkový raw signál: [[raw/FLP studentská sbírka úloh|FLP studentská sbírka úloh]]; obsahově sedí s tímto záznamem a navíc obsahuje studentská řešení.
 
-## FP
+## FP/Haskell
 
 1. Lambda kalkul: definovat `True`, `False`, `XOR`; ukázat `XOR T F -> T`.
 2. Pro:
@@ -34,7 +35,7 @@ Byla poznámka, že je potřeba vhodně zvolit indukční hypotézu.
 4. Definovat IO akci `pp`, která pretty-printne výraz s minimálním nutným závorkováním.
 5. Bonus: datový typ pro obousměrně vázaný seznam a funkce `l2dll`.
 
-## LP
+## LP/Prolog
 
 Deterministický Turingův stroj. Zadány dynamické predikáty:
 
@@ -49,3 +50,9 @@ Deterministický Turingův stroj. Zadány dynamické predikáty:
 3. `findmove(Moves, Action)`: najde proveditelnou akci v seznamu přechodů `move(State, Symbol, Action)`.
 4. `action/1`: provede akci `act(w, Sym, State)`, `act(r, State)` nebo `act(l, State)`.
 5. `work(Moves, InitState, Tape, FinalStates)`: uspěje, pokud deterministický TS doběhne do koncového stavu.
+
+## Aktuální relevance
+
+- FP/Haskell, lambda a důkazové části ber jako historický trénink stylu zadání a ručního řešení.
+- LP/Prolog část je pro 2025/2026 jen historický vzor; druhou praktickou část nahrazuje Rust.
+- U statusu `raw only` používej zadání jako slabší signál než `pin exact` nebo `photo transcript`.

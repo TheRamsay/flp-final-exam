@@ -4,6 +4,7 @@
 
 - [[raw/manual/pin-assignments|pin assignments]] - ručně vytěžená zadání z pinů.
 - [[raw/manual/conversation-assignments|conversation assignments]] - ručně vytěžená zadání z konverzace.
+- [[raw/FLP studentská sbírka úloh|FLP studentská sbírka úloh]] - studentská sbírka zadání/řešení; import a konflikty viz [[knowledge/exams/_student-collection-crosscheck|Studentská sbírka - cross-check import]].
 - Lokální scratchpad `raw/discord-analysis/summary.md` - automatická sumarizace exportu, ignorovaná gitem.
 - Lokální scratchpad `raw/discord-analysis/pin-signals.md` - signály z pinů, ignorovaný gitem.
 - Lokální scratchpad `raw/discord-analysis/conversation-signals.md` - kandidáti z konverzace, ignorovaný gitem.
@@ -12,6 +13,8 @@
 - [[knowledge/topics/rust-021-slides|Rust 021 slides extract]] - výtah z `raw/rust.021.pdf` a predikce compile/fix otázek.
 
 ## Nejlepší termíny pro Haskell styl
+
+Souhrn všech termínů je v [[knowledge/exams/overview|Přehledu termínů]].
 
 1. [[knowledge/exams/2024-2025/term-1-radny-photo|2024-2025 - řádný foto]]
 2. [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 - předtermín foto fragment]]
