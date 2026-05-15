@@ -28,4 +28,4 @@ action input output = do
 ## Zdroje
 
 - Aktuální požadavek znát Prelude a IO funkce: [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
-- Historické IO úlohy: [[knowledge/exams/2024-2025/term-1-radny-photo|IO `wr`]], [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|IO `readf`]], [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|IO `fx`]], [[knowledge/exams/2021-2022/term-0-special|IO trim řádků]].
+- Historické IO úlohy: [[knowledge/exams/2024-2025/term-1-radny-photo|2024-2025 řádný]] - `wr`, [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 předtermín]] - `readf`, [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 1. opravný]] - `fx`, [[knowledge/exams/2021-2022/term-0-special|2021-2022 speciální termín]] - trim řádků.
