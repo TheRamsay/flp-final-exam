@@ -20,8 +20,17 @@ Prakticky: nečekal bych přesně stejné zadání, ale čekal bych velmi podobn
 | 2024/2025 1. opravný fragment | Fibonacci přes pevný bod, `sub` zmínky | fragmentární | `len xs = len' xs` |
 | 2023/2024 1. opravný | `SUB` přes pevný bod | IO skupiny slov podle délky | `take n xs ++ drop n xs = xs` |
 | 2022/2023 předtermín | `True`, `False`, `XOR` | výrazový typ, pretty-print `pp`, bonus DLL | `suma 0 xs = foldl (+) 0 xs` |
+| 2021/2022 1. opravný | fragmentární lambda | IO spojování řádků do limitu, výstup `.out` | `map (uncurry f) (zip xs ys)` vs `zipWith f xs ys` |
+| 2021/2022 řádný | lambda v Prolog části | stack s konstantní délkou, DFA pravidla, IO parser | není silně zachyceno |
 | 2021/2022 speciální-předtermín | pevný bod pro `LT` | `mid`, IO trim řádků | `concat xs ++ ys = foldr (:) ys xs` |
+| 2020/2021 2. opravný | platná/neplatná substituce | `substrs`, `subsets`, lookup v souboru | vztah `zp` a `df` |
+| 2020/2021 1. opravný | beta/substituce validita | lambda AST, množiny, `fv`, číslování řádků | není silně zachyceno |
 | 2020/2021 řádný | `xor`, `true`, `false` | aritmetický typ, `eval`, `load`, bonus DLL | `all xs = foldr (&&) True xs` |
+| 2019/2020 předtermín | `False`, ternární operátor, `eq` | neorientovaný graf, validace a IO parser | foldr důkaz |
+| 2018/2019 2. opravný | není silně zachyceno | B-tree, `create`, `ins`, `allList` | není silně zachyceno |
+| 2017/2018 1. opravný | není silně zachyceno | login report IO | délka přes `foldl` |
+| 2017/2018 řádný | není silně zachyceno | `DLog`, IO filtr, nekonečný strom bonus | `foldr (&&) True xs = all xs` |
+| 2016/2017 řádný | není silně zachyceno | `fdup`, duplikace řádků, bonus unifikace termů | není silně zachyceno |
 | 2025/2026 půlsemestrálka signál | `odds` nad list encodingem | `Grade`, `Result`, histogram | není finální zkouška |
 
 ## Jak moc se to mění
@@ -61,6 +70,8 @@ Vnitřní šablona je ale podobná:
 
 Nejvíc se mění datový model, ne způsob psaní Haskellu.
 
+Po přidání studentské sbírky je vidět, že starší ročníky rozšiřují hlavně domény: stack, DFA, graf, filesystem, B-tree, log report. Nezvyšují zásadně počet technik; pořád jde o `data`, pattern matching, rekurzi, seznamy, strom/invariant a malý IO obal.
+
 ### IO úlohy
 
 IO se objevuje často, ale obvykle není těžké samo o sobě. Těžká část je čistý parser/transformace.
@@ -82,6 +93,9 @@ Varianty:
 - načíst slova a seskupit podle délky,
 - trimovat řádky a vypsat statistiku,
 - načíst prefixový tvar výrazu.
+- reportovat loginy nebo záznamy `Integer#String`,
+- načíst pravidla automatu nebo graf,
+- přepisovat řádky a zachovat pořadí.
 
 ### Důkazy
 
@@ -109,6 +123,8 @@ Neučit se stará zadání nazpaměť. Učit se převádět nové zadání na je
 4. čistý parser/formatter + IO wrapper,
 5. indukční důkaz nad seznamem.
 
+Studentská sbírka přidává dobré varianty na stejnou schopnost: pokud umíš jednu AST úlohu, změň ji na stack/DFA/graf/B-tree. Pokud umíš jednu IO úlohu, změň jen formát řádku a pravidlo výstupu.
+
 Největší riziko u zkoušky není úplně nová oblast, ale drobná změna v zadání:
 
 - jiná reprezentace vstupu,
@@ -135,6 +151,16 @@ Moje pracovní interpretace: Haskell/lambda část je zhruba **60-70 % stejná v
 - [[knowledge/exams/2024-2025/term-2-prvni-opravny-fragment|2024-2025 - 1. opravný fragment]]
 - [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 - 1. opravný termín foto]]
 - [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 - předtermín]]
+- [[knowledge/exams/2021-2022/term-2-prvni-opravny-student|2021-2022 - 1. opravný]]
+- [[knowledge/exams/2021-2022/term-1-radny-student|2021-2022 - řádný]]
 - [[knowledge/exams/2021-2022/term-0-special|2021-2022 - speciální-předtermín]]
+- [[knowledge/exams/2020-2021/term-3-druhy-opravny-student|2020-2021 - 2. opravný]]
+- [[knowledge/exams/2020-2021/term-2-prvni-opravny-student|2020-2021 - 1. opravný]]
 - [[knowledge/exams/2020-2021/term-1-radny|2020-2021 - řádný termín]]
+- [[knowledge/exams/2019-2020/term-0-pretermin-student|2019-2020 - předtermín]]
+- [[knowledge/exams/2018-2019/term-3-druhy-opravny-student|2018-2019 - 2. opravný]]
+- [[knowledge/exams/2017-2018/term-2-prvni-opravny-student|2017-2018 - 1. opravný]]
+- [[knowledge/exams/2017-2018/term-1-radny-student|2017-2018 - řádný]]
+- [[knowledge/exams/2016-2017/term-1-radny-student|2016-2017 - řádný]]
 - [[knowledge/exams/2025-2026/pulsemka-2026-signal|2025-2026 - půlsemestrálka signal]]
+- [[knowledge/exams/overview|Přehled termínů]]

@@ -20,6 +20,7 @@ Tyhle věci se v zadáních nebo aktuálních signálech opakují přímo.
 
 - `data` pro výčtové typy: `Grade = A | B | ...`,
 - `data` pro rekurzivní typy: strom, výraz, lambda výraz,
+- `data` pro účelové struktury: stack s uloženou délkou, log záznam, pravidlo automatu, graf,
 - konstruktory s argumenty,
 - `deriving (Eq, Ord, Show)` podle potřeby,
 - typové parametry: `Tree k v`, `[a]`, `Maybe a`.
@@ -36,6 +37,7 @@ Tyhle věci se v zadáních nebo aktuálních signálech opakují přímo.
 ### Stromy a výrazové AST
 
 - BST invariant,
+- B-tree a vícecestné stromy aspoň na úrovni návrhu typu,
 - `insert`/`ins`,
 - `find`/`lookupT`,
 - `eval`,
@@ -56,6 +58,7 @@ Tyhle věci se v zadáních nebo aktuálních signálech opakují přímo.
 - `words`, `unwords`,
 - `read`, `show`,
 - jednoduché parsování po znacích nebo podle oddělovače.
+- formáty `key:value`, `Integer#String`, prefixový výraz, seznam pravidel.
 
 ### IO
 
@@ -117,4 +120,5 @@ Tohle bych netrénoval, pokud už neumíš must-know část.
 
 - Aktuální rozsah Prelude/IO/Haskell klíčových slov: [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 - Historické Haskell tvary: [[knowledge/exams/2024-2025/term-1-radny-photo|2024-2025 řádný]], [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 předtermín]], [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 1. opravný]], [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 předtermín]].
+- Starší studentská sbírka doplňuje stack/DFA, graf, filesystem, B-tree, login report a další IO varianty: [[knowledge/exams/overview|Přehled termínů]].
 - Souhrnná analýza variability: [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell a lambda-kalkul zadání]].

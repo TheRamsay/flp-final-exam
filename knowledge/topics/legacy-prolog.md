@@ -11,6 +11,7 @@ Prolog byl historicky ve finální zkoušce, ale v roce 2025/2026 má být nahra
 - Turingův stroj přes dynamické predikáty.
 - Multimnožiny a rezistorové zapojení.
 - Cesty v grafu přes fakta `dist`.
+- Sudoku, kliky v grafu, key-value databáze a flatten zanořených seznamů ze starší studentské sbírky.
 
 ## Přenositelné ponaučení
 
@@ -21,4 +22,5 @@ Prolog byl historicky ve finální zkoušce, ale v roce 2025/2026 má být nahra
 ## Zdroje
 
 - Prolog byl historicky v [[knowledge/exams/2024-2025/term-1-radny-photo|2024-2025 řádném]], [[knowledge/exams/2024-2025/term-0-pretermin-photo-fragment|2024-2025 předtermínu]], [[knowledge/exams/2023-2024/term-2-prvni-opravny-photo|2023-2024 1. opravném]], [[knowledge/exams/2022-2023/term-0-pretermin|2022-2023 předtermínu]] a starších záznamech.
+- Širší přehled historických LP částí: [[knowledge/exams/overview|Přehled termínů]].
 - Aktuální důvod nízké priority: [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].

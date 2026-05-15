@@ -3,6 +3,7 @@
 ## Nástroje
 
 - `tools/haskell-paper-drill/` - lokální paper drill appka s minimalistickým editorem, 14 drilly, variantami zadání, Paper režimem bez nápovědy, Editor režimem s autocomplete nápovědou, označenou zdrojovostí, řešitelskými kostrami po odevzdání, historií, statistikami podle chyb a post-hoc GHC testy.
+- [[knowledge/practice/haskell-paper-rotation|Haskell paper rotation]] - týdenní rotace podle reálných zdrojových vzorů ze starých zkoušek.
 - [[knowledge/practice/rust-compile-fix-drill|Rust compile/fix drill]] - 20 pasivních Rust otázek typu zkompiluje/nezkompiluje, najdi chybu a oprav.
 
 Spuštění:
@@ -27,11 +28,13 @@ URL: `http://127.0.0.1:8787`
 - AST + `eval`/pretty-print.
 - BST + `find`/`insert`.
 - Množiny jako seznamy + volné proměnné.
+- Stack/DFA, graf, B-tree, filesystem a login report jako starší varianty stejného `data` + rekurze stylu.
 - IO transformace souboru.
 - Důkaz nad `foldr`, `foldl`, `take/drop`, akumulátorem.
 
 ## Zdroje
 
 - Drill bank je odvozený z [[knowledge/exams/00-index|minulých zadání]] a označuje přímé přepisy vs varianty.
+- Rozšířený přehled zdrojových vzorů: [[knowledge/exams/overview|Přehled termínů]].
 - Aktuální omezení pro Haskell/Paper režim vychází z [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 - Přehled doporučených témat: [[knowledge/01-roi-plan|ROI plán]].

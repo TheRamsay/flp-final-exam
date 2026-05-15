@@ -12,15 +12,16 @@
 
 1. IO řetězová zadání: typ → pomocná funkce → IO akce.
 2. Datové modely: lambda výrazy, aritmetické výrazy, BST, mapování klíč-hodnota.
-3. Funkce nad množinami reprezentovanými seznamy: `union`, symetrický rozdíl, volné proměnné.
-4. Pretty-print a minimální závorkování.
-5. Rust compile/fix otázky: proč borrow checker odmítne kód, jak změnit signaturu nebo vlastnictví.
+3. Starší domény jako varianty stejné techniky: stack, DFA pravidla, graf, filesystem, B-tree, log report.
+4. Funkce nad množinami reprezentovanými seznamy: `union`, symetrický rozdíl, volné proměnné.
+5. Pretty-print a minimální závorkování.
+6. Rust compile/fix otázky: proč borrow checker odmítne kód, jak změnit signaturu nebo vlastnictví.
 
 ## Nízká priorita
 
 1. Detailní Prolog implementace magických čtverců, Turingova stroje, rezistorů a cest.
 2. Staré Prolog predikáty typu `assertz`/`retractz`.
-3. Historické materiály před rokem 2021 mimo základní Haskell/Lambda vzory.
+3. Historické materiály před rokem 2021 mimo základní Haskell/Lambda/IO vzory.
 
 ## Praktický režim
 
@@ -30,9 +31,11 @@ Největší návratnost má psaní bez editoru:
 2. Piš bez GHC, HLS, Copilota a bez hledání v dokumentaci.
 3. Po odevzdání si ručně projdi syntaxi, base cases, typy a okrajové případy.
 4. U testovatelných úloh pusť GHC až po dokončení řešení.
+5. Mimo appku toč bloky z [[knowledge/practice/haskell-paper-rotation|Haskell paper rotation]].
 
 ## Zdroje
 
-- Syntéza z [[knowledge/exams/00-index|minulých zadání]], hlavně Haskell částí 2020/2021 až 2024/2025.
+- Syntéza z [[knowledge/exams/00-index|minulých zadání]], hlavně Haskell částí 2020/2021 až 2024/2025 a rozšířené studentské sbírky.
+- Přehled všech zdrojových vzorů: [[knowledge/exams/overview|Přehled termínů]].
 - Aktuální změna Prolog -> Rust: [[knowledge/exams/2025-2026/current-format|2025-2026 - aktuální formát]].
 - Detailní rozpad Haskell/lambda stability: [[knowledge/03-variabilita-haskell-lambda|Variabilita Haskell a lambda-kalkul zadání]].

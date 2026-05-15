@@ -6,4 +6,5 @@
 - [[knowledge/topics/haskell-proofs|Haskell důkazy]]
 - [[knowledge/topics/lambda-calculus|Lambda kalkul]]
 - [[knowledge/topics/rust-exam-notes|Rust exam notes]]
+- [[knowledge/topics/rust-021-slides|Rust 021 slides extract]]
 - [[knowledge/topics/legacy-prolog|Legacy Prolog]]
