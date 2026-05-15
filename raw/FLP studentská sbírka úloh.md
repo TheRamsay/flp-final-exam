@@ -1,8 +1,5 @@
+# FLP studentská sbírka úloh
 
-
----
-FLP studentská sbírka úloh
-===
 Přehlednější sbírka oficiálních řešení + zadání z fitušky od studentů.
 Upravujte, přidávejte dle libosti. Držte pls nějakou strukturu, ať se v tom dá vyznat a nedopadne to jak sdílený dokument. Pro diskuzi se dají použít komentáře u odstavců/kódů.
 
